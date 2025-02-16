@@ -1,0 +1,12 @@
+site_name: FreeRADIUS Documentation
+theme:
+  name: material  # MkDocs Material 主题
+nav:
+  - 主页: index.md
+  - 简介: 1-freeradius-introduce.md
+  - 工作原理: 2-freeradius-how to work.md
+  - 安装要求: 3-installation-requirements.md
+  - 配置指南: 4-configuration-requirements.md
+  - 术语表: 5-glossary of terms.md
+  - FAQ: 6-Frequently Asked Questions.md
+
