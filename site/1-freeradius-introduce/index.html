@@ -1,0 +1,757 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../2-freeradius-how%20to%20work/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>简介 - FreeRADIUS Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#freeradiusradius" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="FreeRADIUS Documentation" class="md-header__button md-logo" aria-label="FreeRADIUS Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FreeRADIUS Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              简介
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="FreeRADIUS Documentation" class="md-nav__button md-logo" aria-label="FreeRADIUS Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    FreeRADIUS Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    简介
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    简介
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#10-radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.0 什么是RADIUS？
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.0 什么是RADIUS？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.0.1 历史
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 客户
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 优势
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 优势">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      模块化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      可扩展性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-freeradius" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 FreeRADIUS案例研究
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 FreeRADIUS案例研究">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-8021x" class="md-nav__link">
+    <span class="md-ellipsis">
+      客户示例 - 802.1X
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      客户示例 - 代理（Proxy）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      客户示例 - 性能
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      客户示例 - 架构
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-freeradius-how%20to%20work/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    工作原理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-installation-requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安装要求
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-configuration-requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    配置指南
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-glossary%20of%20terms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    术语表
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-Frequently%20Asked%20Questions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#10-radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.0 什么是RADIUS？
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.0 什么是RADIUS？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.0.1 历史
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 客户
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 优势
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 优势">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      模块化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      可扩展性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-freeradius" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 FreeRADIUS案例研究
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 FreeRADIUS案例研究">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-8021x" class="md-nav__link">
+    <span class="md-ellipsis">
+      客户示例 - 802.1X
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      客户示例 - 代理（Proxy）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      客户示例 - 性能
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      客户示例 - 架构
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="freeradiusradius">FreeRADIUS和RADIUS案例研究总结</h1>
+<h2 id="10-radius">1.0 什么是RADIUS？</h2>
+<p>RADIUS（远程认证拨号用户服务）是一个网络协议，定义了网络设备之间通信的规则和约定，主要用于远程用户认证、授权和计费。通常被互联网服务提供商（ISP）、移动网络运营商以及企业和教育网络使用，RADIUS协议执行三项主要功能：</p>
+<ul>
+<li>在允许用户或设备访问网络之前进行身份验证</li>
+<li>授权用户或设备访问特定的网络服务</li>
+<li>记录和追踪这些服务的使用情况</li>
+</ul>
+<h3 id="101">1.0.1 历史</h3>
+<p>1991年，Merit Network（一家非营利性的互联网服务提供商）需要一种创新的方式来管理访问其网络中各个接入点（POP）的拨号连接。为此，Livingston Enterprises创建了RADIUS。</p>
+<p>在RADIUS创建时，网络访问系统分布在广泛的区域，并由多个独立的组织运行。中央管理员希望避免安全性和可扩展性的问题，因此他们不想分发用户名和密码，而是希望远程访问服务器能够联系中央服务器来授权请求的系统或服务。为此，远程访问服务器发送“成功”或“失败”的信息，远程设备负责执行相应的响应。</p>
+<p>因此，RADIUS的目标是创建一个集中式的位置来进行用户认证，使得来自多个地点的用户都能请求网络访问。</p>
+<p>RADIUS系统的简便性、效率和可用性促使其被网络设备供应商广泛采纳，因此，RADIUS被认为是一个行业标准，并被定位为互联网工程任务组（IETF）标准。</p>
+<h2 id="12">1.2 客户</h2>
+<p>目前，广泛的企业利用RADIUS协议来满足其认证和计费需求。以下是一些RADIUS客户的示例：</p>
+<ul>
+<li>拥有数百万用户的移动网络提供商</li>
+<li>向本地社区提供互联网连接的小型WISP（无线互联网服务提供商）初创公司</li>
+<li>实施网络访问控制（NAC）的企业网络，使用802.1x协议来保护其网络</li>
+</ul>
+<h2 id="13">1.3 优势</h2>
+<p>RADIUS客户端服务器协议包含许多技术优势，客户可以从中受益，包括：</p>
+<ul>
+<li><strong>开放且可扩展的解决方案</strong></li>
+<li><strong>得到大量厂商的广泛支持</strong></li>
+<li><strong>易于修改</strong></li>
+<li><strong>安全性和通信过程的分离</strong></li>
+<li><strong>适应大多数安全系统</strong></li>
+<li><strong>兼容任何支持RADIUS客户端协议的通信设备</strong></li>
+</ul>
+<h3 id="_1">模块化</h3>
+<p>模块化设计使FreeRADIUS易于理解。模块接口简化了模块的添加和删除——例如，如果某个特性不需要用于特定的配置，模块可以轻松删除。一旦模块被移除，它不会影响服务器的性能、内存使用或安全性。这种灵活性使得服务器能够在嵌入式系统到多核具有数十GB内存的计算机平台上运行。</p>
+<h3 id="_2">可扩展性</h3>
+<p>单一的RADIUS服务器可以轻松地从每隔几秒处理一个请求过渡到每秒处理成千上万个请求，仅需重新配置一些默认设置。大型组织（例如拥有超过1000万客户的公司）依赖FreeRADIUS来满足他们的AAA需求。通常，单一的FreeRADIUS服务器足以满足这些大型组织的需求。</p>
+<h2 id="14-freeradius">1.4 FreeRADIUS案例研究</h2>
+<h3 id="-8021x">客户示例 - 802.1X</h3>
+<p>一位客户希望在其环境中部署802.1X认证，以增强其网络的安全性。经过几周的努力，他们没有取得进展。我们被召唤来帮助，并且发现了多个问题。</p>
+<p>客户的网络设备存在多个固件问题。我们与供应商合作解决了这些问题，并修复了固件变更所带来的其他问题。利用从其他客户那里获得的经验，我们改进了客户的解决方案，以防止潜在的未来问题。</p>
+<p>最终结果是，客户能够部署符合所有要求的802.1X认证。一个由多个不同供应商提供的复杂功能集被部署到网络中的多个位置。</p>
+<p>额外的网络安全措施对网络用户透明。客户可以继续以不干扰网络的方式使用网络。认证过程的好处对于网络管理员来说是巨大的。</p>
+<h3 id="-proxy">客户示例 - 代理（Proxy）</h3>
+<p>我们的客户的遗留系统使用多个RADIUS服务器代理请求到不同的服务器目的地。每个RADIUS服务器实施了一组策略，并在所有主服务器上配置。这种信息的重复增加了客户的网络维护成本。</p>
+<p>升级到FreeRADIUS产品意味着客户可以选择继续使用多个RADIUS服务器，或用一个服务器替换它们，并更新其配置。如果他们选择保留多个RADIUS服务器，FreeRADIUS可以复用通用配置，这样可以降低他们的维护成本。</p>
+<p>客户选择用单个服务器替代多个RADIUS服务器。该单个服务器实施了所有的政策，并且所有策略在不会互相影响的隔离区域中进行了实现。该服务器还对所有服务器进行了代理。</p>
+<h3 id="-">客户示例 - 性能</h3>
+<p>我们的客户安装了一个基本的RADIUS服务器，并使用SQL数据库作为后端。几个月后，系统的性能已经低于可接受水平。</p>
+<p>我们重新设计了他们的系统，使得RADIUS服务器能够更高效地使用数据库。我们添加了表、索引，并更新了RADIUS SQL查询。我们的改进帮助客户恢复了原有的系统性能。此外，即使SQL数据库中的数据量比之前多了十倍，性能提升依然得到了保持。</p>
+<h3 id="-_1">客户示例 - 架构</h3>
+<p>我们的客户安装了一个基本的RADIUS服务器。很快他们发现性能无法满足需求。认证过程中的访问请求响应时间不足。客户的系统仅能接受每秒几次认证请求，而在高端机器上，这种性能不可接受。</p>
+<p>我们进行了调查，确定问题出在外部网络依赖。RADIUS服务器在返回响应给网络访问服务器（NAS）之前，需要等待另一个网络元素的响应。</p>
+<p>优化了网络配置后，客户的网络达到了每秒超过900次认证请求的速率。这一性能水平使他们能够将新系统投入生产。</p>
+<hr />
+<p>你可以将这些内容保存为<code>.md</code>文件。如果有任何需要调整的地方，请告诉我！</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>

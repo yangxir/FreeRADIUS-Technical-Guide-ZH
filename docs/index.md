@@ -4,11 +4,11 @@
 
 ## 📖 文档目录
 - [FreeRADIUS 简介](./1-freeradius-introduce.md)
-- [FreeRADIUS 工作原理](./2-freeradius-how%20to%20work.md)
+- [FreeRADIUS 工作原理](./2-freeradius-how-to-work.md)
 - [安装要求](./3-installation-requirements.md)
 - [配置指南](./4-configuration-requirements.md)
-- [术语表](./5-glossary%20of%20terms.md)
-- [常见问题 (FAQ)](./6-Frequently%20Asked%20Questions.md)
+- [术语表](./5-glossary-of-terms.md)
+- [常见问题 (FAQ)](./6-Frequently-Asked-Questions.md)
 
 ## 🚀 快速开始
 如果你是第一次使用 FreeRADIUS，你可以先阅读 [FreeRADIUS 简介](./1-freeradius-introduce.md)。

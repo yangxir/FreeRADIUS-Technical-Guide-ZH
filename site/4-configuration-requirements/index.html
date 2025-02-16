@@ -1,0 +1,2349 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../3-installation-requirements/">
+      
+      
+        <link rel="next" href="../5-glossary%20of%20terms/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>配置指南 - FreeRADIUS Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#-" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="FreeRADIUS Documentation" class="md-header__button md-logo" aria-label="FreeRADIUS Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FreeRADIUS Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              配置指南
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="FreeRADIUS Documentation" class="md-nav__button md-logo" aria-label="FreeRADIUS Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    FreeRADIUS Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-freeradius-introduce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    简介
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-freeradius-how%20to%20work/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    工作原理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-installation-requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安装要求
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    配置指南
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    配置指南
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#40" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.0 核心配置文件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#401-raddb" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.0.1 raddb 子目录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#402" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.0.2 总体布局
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41-radiusdconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 radiusd.conf 文件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#411" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.1 变量
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#412" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.2 日志子节
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#413" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.3 安全子节
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#414" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.4 线程子节
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#415" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.5 模块子节
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#416" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.6 实例化子节
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 文件格式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#421" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2.1 变量赋值
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#422" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2.2 变量引用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#423" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2.3 模块引用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#424" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2.4 节
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#425" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2.5 通过引用包含文件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 数据包处理部分
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#431" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3.1 术语和定义
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      请求
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      处理部分
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="处理部分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      处理部分及其含义
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#433" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3.3认证部分
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3.3认证部分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      授权（Authorize）部分
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-session-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      会话部分（The Session Section）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-authenticate-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      认证部分（The Authenticate Section）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-post-auth-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      后认证部分（The Post-auth Section）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#434-accounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      账单部分（4.3.4 Accounting）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-preacct-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      预处理部分（The Preacct Section）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preacct" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preacct 部分
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preacct 部分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preacct_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preacct 部分的返回代码与操作：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accounting 部分
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Accounting 部分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accounting_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accounting 部分的返回代码与操作：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理认证
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="代理认证">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      授权部分
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理前部分
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理后部分
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理会计
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="代理会计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理会计预处理部分
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      会计部分
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="会计部分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理前部分
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理后部分
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coa" class="md-nav__link">
+    <span class="md-ellipsis">
+      授权变更 (CoA)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="授权变更 (CoA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coa_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      发送 CoA 部分
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coa_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      接收 CoA 部分
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#radiusdconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      简化的 radiusd.conf
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      简单配置示例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 用户文件
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-glossary%20of%20terms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    术语表
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-Frequently%20Asked%20Questions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#40" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.0 核心配置文件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#401-raddb" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.0.1 raddb 子目录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#402" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.0.2 总体布局
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41-radiusdconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 radiusd.conf 文件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#411" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.1 变量
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#412" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.2 日志子节
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#413" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.3 安全子节
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#414" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.4 线程子节
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#415" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.5 模块子节
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#416" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.6 实例化子节
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 文件格式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#421" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2.1 变量赋值
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#422" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2.2 变量引用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#423" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2.3 模块引用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#424" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2.4 节
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#425" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2.5 通过引用包含文件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 数据包处理部分
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#431" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3.1 术语和定义
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      请求
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      处理部分
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="处理部分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      处理部分及其含义
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#433" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3.3认证部分
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3.3认证部分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      授权（Authorize）部分
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-session-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      会话部分（The Session Section）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-authenticate-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      认证部分（The Authenticate Section）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-post-auth-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      后认证部分（The Post-auth Section）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#434-accounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      账单部分（4.3.4 Accounting）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-preacct-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      预处理部分（The Preacct Section）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preacct" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preacct 部分
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preacct 部分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preacct_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preacct 部分的返回代码与操作：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accounting 部分
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Accounting 部分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accounting_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accounting 部分的返回代码与操作：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理认证
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="代理认证">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      授权部分
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理前部分
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理后部分
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理会计
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="代理会计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理会计预处理部分
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      会计部分
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="会计部分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理前部分
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理后部分
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coa" class="md-nav__link">
+    <span class="md-ellipsis">
+      授权变更 (CoA)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="授权变更 (CoA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coa_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      发送 CoA 部分
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coa_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      接收 CoA 部分
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#radiusdconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      简化的 radiusd.conf
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      简单配置示例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 用户文件
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="-">第四章 - 配置要求</h1>
+<p>本章描述了FreeRADIUS配置文件结构以及各个配置文件的用途：</p>
+<ul>
+<li>核心配置文件</li>
+<li><strong>radiusd.conf</strong> 文件</li>
+<li>文件格式</li>
+<li>数据包处理部分</li>
+<li>用户文件</li>
+</ul>
+<p><code>/etc/raddb</code> 目录包含了配置文件。主要配置文件是名为 <strong>radiusd.conf</strong> 的文件，它引用了其他配置文件。FreeRADIUS包包含大量文件，其中许多配置文件是示例；其余的配置文件确保服务器在安装后能正确运行。</p>
+<h3 id="40">4.0 核心配置文件</h3>
+<p>配置文件位于 <code>raddb</code> 目录中。配置文件结构还包含虚拟服务器配置。服务器包含多个配置文件，以下是其中列出的几个示例。例如，每个插件模块都有自己的配置文件，虽然这些文件没有列出。以下是列出的一些最重要的配置文件，按字母顺序排列：</p>
+<ul>
+<li><strong>radiusd.conf</strong>：定义了RADIUS服务器的配置参数。它引用了其他配置文件。</li>
+<li><strong>clients.conf</strong>：定义了配置RADIUS客户端所需的信息，包括IP地址和共享密钥。该文件从 <strong>radiusd.conf</strong> 文件中引用。</li>
+<li><strong>dictionary</strong>：定义了RADIUS服务器的本地属性。此文件引用了默认字典文件。默认字典文件包括数千个属性定义。</li>
+<li><strong>proxy.conf</strong>：定义了上游主机服务器，包括信息如IP地址和共享密钥。它还定义了领域（Realms）。<strong>radiusd.conf</strong> 文件引用了 <strong>proxy.conf</strong> 文件。</li>
+<li><strong>sites-enabled/default</strong>：这是默认的虚拟服务器。该文件处理身份验证和计费请求。它包含一个为处理最大数量身份验证协议而设计的配置。<strong>radiusd.conf</strong> 文件引用了 <strong>sites-enabled/default</strong> 文件。</li>
+<li><strong>sites-enabled/inner-tunnel</strong>：这个虚拟服务器处理在TLS隧道内传输的身份验证方法，作为PEAP或EAP-TTLS的一部分。<strong>radiusd.conf</strong> 文件引用了 <strong>sql.conf</strong> 文件。</li>
+<li><strong>users</strong>：传统的RADIUS用户配置文件。此文件的格式与1993年发布的文件格式相似。<strong>files</strong> 文件引用了 <strong>users</strong> 文件。</li>
+</ul>
+<h3 id="401-raddb">4.0.1 raddb 子目录</h3>
+<p><code>raddb</code> 目录包含若干子目录，用于帮助组织配置文件：</p>
+<ul>
+<li><strong>certs/</strong> 该子目录存储EAP证书。</li>
+<li><strong>mods-available/</strong> 该目录存储模块配置文件，网络管理员可以按需启用每个模块。每个模块在目录中都有不同的配置文件。这些文件通过 <strong>radiusd.conf</strong> 加载。</li>
+<li><strong>mods-enabled/</strong> 该目录存储已启用的模块配置文件。通常这些是指向 <strong>mods-available/</strong> 目录中文件的符号链接。</li>
+<li><strong>sites-available/</strong> 该目录用于存储虚拟服务器配置文件，管理员可以启用这些虚拟服务器。每个虚拟服务器封装了一个逻辑功能集。</li>
+<li><strong>sites-enabled/</strong> 该目录用于存储已启用的虚拟服务器。通常这些是指向 <strong>sites-available/</strong> 目录中文件的符号链接。</li>
+<li><strong>sql/</strong> 该目录用于存储更多的SQL配置文件，支持多种数据库，如MySQL、PostgreSQL或Oracle。还有子目录用于每种SQL数据库类型。</li>
+</ul>
+<p>此列表还标识了许多常用的配置文件：</p>
+<ul>
+<li><strong>acct_users</strong> 存储Accounting-Request数据包的用户文件。</li>
+<li><strong>hints</strong> 传统的RADIUS配置文件，用于为PPP或SLIP提供User-Name的一部分。</li>
+<li><strong>huntgroups</strong> 传统的RADIUS配置文件，用于为客户端分组配置。</li>
+</ul>
+<h3 id="402">4.0.2 总体布局</h3>
+<p>本节描述的FreeRADIUS文件布局基于约定，并非服务器强制要求的。该文件布局便于查找配置中的特定部分，因为每一部分都被分成逻辑相关的组件，所有这些组件都被放在子目录中。</p>
+<p>几乎所有列出的文件都属于主要的 <strong>radiusd.conf</strong> 文件。早期版本的FreeRADIUS将所有配置文件存储在一个大的 <strong>radiusd.conf</strong> 文件中，共计约2000行文本。这种文件聚合方式使得网络管理员在理解配置或查找特定部分时变得困难。第4.0.1节中列出的子目录是在FreeRADIUS 2.0.0版本中引入的。从版本2.0.0及后续版本开始，<strong>radiusd.conf</strong> 文件比以前小得多。</p>
+<h3 id="41-radiusdconf">4.1 radiusd.conf 文件</h3>
+<p><strong>radiusd.conf</strong> 文件包含了服务器的配置。当服务器启动时，它会读取此文件并缓存配置。数据会被解析以设置变量的值或决定其他配置项，如模块。</p>
+<p>加载配置后，服务器接收并处理数据包。当服务器以调试模式运行时（<code>radiusd -X</code>），当前使用的配置会打印到终端窗口。这些信息包括正在读取的文件、加载的模块以及使用的文件和模块。</p>
+<p>默认的 <strong>radiusd.conf</strong> 文件中定义了变量和子部分，并详细讨论了如何定义特定功能。为了节省空间，本文件只描述了常见的修改项；<strong>radiusd.conf</strong> 文件包含更多变量和设置值，这些内容在评论部分中与变量定义一起记录。</p>
+<h3 id="411">4.1.1 变量</h3>
+<p>默认的 <strong>radiusd.conf</strong> 文件包含大量变量（关于变量的更多信息请见默认配置文件中的注释部分）。一般来说，系统管理员不需要编辑或更改本节未讨论的任何变量。</p>
+<ul>
+<li><strong>user</strong> 通常设置为 <strong>radiusd</strong>。配置文件应可读取，但该用户不能写入。</li>
+<li><strong>group</strong> 通常设置为 <strong>radiusd</strong>。配置文件应可读取，但该组不能写入。</li>
+<li><strong>max_requests</strong> 当服务器收到请求时，它会将请求放入内部队列进行处理。稍后，服务器会处理该请求并发送响应。未收到响应的请求会通过内部计数器进行跟踪。<strong>max_requests</strong> 变量防止此计数器变得过大。此功能可防止服务器因流量突增而过载。</li>
+</ul>
+<p>当 <strong>max_requests</strong> 变量设置得过低时，服务器会丢弃新请求，直到它变得忙碌。服务器还会向控制台打印描述性错误消息，说明请求被丢弃，并建议网络管理员增加 <strong>max_requests</strong> 的值。</p>
+<p>当 <strong>max_requests</strong> 变量设置得过高时，服务器会使用更多的内存，但没有实际的好处。一般来说，网络管理员最好将此值设置得较高，而不是过低。</p>
+<p>将 <strong>max_requests</strong> 变量设置为零（0）表示没有限制响应数的上限。将 <strong>max_requests</strong> 设置为零并不推荐，因为它可能导致潜在的服务器过载。</p>
+<p>由于每个客户端都发送一系列数据包，网络管理员应根据客户端的总数设置此变量。因此，可以将总客户端数乘以256，然后将 <strong>max_requests</strong> 变量设置为该值。未来版本的服务器可能会使用自动设置此变量的功能。</p>
+<h3 id="412">4.1.2 日志子节</h3>
+<p>日志子节定义了系统如何处理服务器日志消息（服务器核心产生这些消息）。</p>
+<ul>
+<li><strong>destination</strong> 该变量控制服务器将日志消息写入哪里。可以设置为以下之一：</li>
+<li><strong>files</strong> 将日志记录到纯文本文件中，文件名由以下的 <strong>file</strong> 指令指定。</li>
+<li><strong>syslog</strong> 使用 <strong>syslog_facility</strong> 指令指定的设施将日志记录到syslog中。</li>
+<li><strong>stdout</strong> 标准输出。推荐仅在使用Daemontools时使用 <strong>stdout</strong>。</li>
+<li>
+<p><strong>stderr</strong> 标准错误输出。</p>
+</li>
+<li>
+<p><strong>file</strong> 服务器写入所有日志消息的文件名。默认值是 <code>${logdir}/radius.log</code>。此文件会在 HUP（挂起信号）时重新打开，以便进行日志轮换。</p>
+</li>
+<li>
+<p><strong>syslog_facility</strong> 允许的值依赖于本地操作系统定义的Syslog设施。请参见 <code>syslog</code> 以获取详细信息。默认值为 <code>daemon</code>，这是大多数操作系统的通用设置。</p>
+</li>
+<li>
+<p><strong>auth</strong> 记录每次成功或失败的身份验证的摘要信息。此配置可能会在将来被移除，因为它重复了 <strong>linelog</strong> 功能。相关的变量 <strong>auth_badpass</strong> 和 <strong>auth_goodpass</strong> 控制是否记录错误或成功的密码。出于安全目的，默认值为 <code>no</code>。系统管理员可以设置 <strong>auth_badpass=yes</strong>，使日志记录失败身份验证尝试中使用的密码。管理员可以查看日志文件以查看用户实际输入的密码。</p>
+</li>
+<li>
+<p><strong>msg_goodpass</strong> 该自定义消息会附加到服务器发送的摘要日志消息中，当 <strong>auth=yes</strong> 时发送。此消息会动态扩展，并且可以包含来自任何属性的信息。</p>
+</li>
+<li>
+<p><strong>msg_badpass</strong> 该自定义消息会附加到服务器发送的摘要日志消息中，当 <strong>auth=yes</strong> 时发送。此消息会动态扩展，并且可以包含来自任何属性的信息。它最适合用于记录用户被拒绝的具体原因，如 “用户X组无法使用NAS”。</p>
+</li>
+</ul>
+<h3 id="413">4.1.3 安全子节</h3>
+<p>安全子节包含影响服务器安全的变量。虽然大多数其他变量包含诸如文件权限等信息，安全子节的变量则控制服务器如何响应感知到的攻击。</p>
+<ul>
+<li><strong>max_attributes</strong> 每个请求通常包含少量的属性。然而，数据包格式允许恶意客户端在一个数据包中发送超过1000个属性。由于每个属性都会解析到内部数据结构，这些恶意数据包会导致服务器为每个请求分配多达一兆字节的内存。如果恶意客户端发送大量请求，服务器可能会迅速耗尽内存。</li>
+</ul>
+<p><strong>max_attributes</strong> 值限制每个请求的属性数量。包含超过 <strong>max_attributes</strong> 值的请求会被丢弃，并导致服务器发出警告消息。此变量的默认值为200，足以应对所有正常操作。如果出现 <strong>max_attributes</strong> 警告消息，请联系管理员以确定为何发送了这么多属性。</p>
+<ul>
+<li><strong>reject_delay</strong> 通常情况下，尽快响应身份验证请求是有用的。然而，这种快速响应会让攻击者有机会通过字典攻击猜测密码，每秒进行成千上万次尝试。</li>
+</ul>
+<p><strong>reject_delay</strong> 参数控制服务器在发送任何拒绝响应之前等待的时间。这个延迟通常设置为1（秒）。建议将此值保留为1。如果将该值设置为0，结果将导致快速响应时间，这可能使恶意攻击者能够猜测密码。</p>
+<ul>
+<li><strong>status_server</strong> 管理员发现，了解服务器是否存活并响应请求非常有用。<strong>status_server</strong> 配置允许服务器响应状态服务器请求。该响应可以是空的 Access-Accept 或 Accounting-Request。RFC 5997（www.ietf.org/rfc/）建议在所有客户端和服务器上使用此功能。</li>
+</ul>
+<p>代理通常在尝试确定主服务器是否存活时使用此变量。如果代理怀疑主服务器无响应，它会开始使用状态服务器请求来ping服务器。当主服务器响应这些请求时，代理会认为它是响应的。</p>
+<p>我们建议始终将此变量设置为 <strong>yes</strong>。如果将其设置为 <strong>no</strong>，则任何客户端都将面临更难确定是否有服务器响应的情况，且认证请求或计费数据可能会丢失。</p>
+<hr />
+<h3 id="414">4.1.4 线程子节</h3>
+<p><strong>thread</strong> 子节定义了与子线程相关的参数。服务器的主循环使用一个线程来接收请求并将其放入队列中。然后，该线程从队列中获取请求并处理它们。</p>
+<p>服务器因此可以执行多个任务，同时不阻塞任何任务。例如，当线程需要从数据库中读取字段时，它可能会阻塞并等待数据库响应。与此同时，其他线程可以继续运行并并行处理其他请求。这种行为提高了服务器的性能和健壮性。</p>
+<p>然而，和所有优化一样，还是存在一些权衡。服务器使用多个变量，这些变量模仿了Apache Web服务器中类似的指令，用于控制和管理这些权衡。下面详细介绍了这些变量：</p>
+<ul>
+<li>
+<p><strong>start_servers</strong> 该变量定义了服务器启动时启动的线程数量。</p>
+</li>
+<li>
+<p><strong>max_servers</strong> <code>max_servers</code> 变量控制允许同时运行的线程数。该变量是一个上限。</p>
+</li>
+</ul>
+<p>我们建议将该变量设置得较高，而不是较低。如果设置过低，请求将保持排队状态，直到线程变得可用，即使CPU没有繁忙。这种延迟可能导致请求在超时之前被忽略。</p>
+<p>在调试模式下，可能会出现以下信息：</p>
+<p><code>Thread spawn failed. Maximum number of threads (32) already running.</code></p>
+<p>该信息可能表明 <code>max_servers</code> 变量的值需要增加。另一方面，这条线程生成失败的消息也可能是由慢服务器引起的。当所有线程都在等待数据库响应时，会出现这种情况。慢服务器是问题的根源，增加 <code>max_requests</code> 并不会解决问题；相反，增加该值会导致更多的线程排队等待数据库。</p>
+<ul>
+<li>
+<p><strong>{min,max}_spare_servers</strong> 这些变量控制备用线程的数量。由于每个线程需要时间来启动，因此在请求等待时最好有几个空闲线程。发生流量突增时，空闲线程数量会减少。该变量随后会生成更多线程，直到 <strong>min_spare_servers</strong> 数量的线程为空闲状态。当流量激增结束时，空闲线程数量会增加。如果超过了 <strong>max_spare_servers</strong> 数量，则会关闭部分空闲线程，直到空闲线程数恢复为 <strong>max_spare_servers</strong>。</p>
+</li>
+<li>
+<p><strong>max_requests_per_server</strong> 该变量已被弃用。建议不要使用该变量，保持其值为零（0）。</p>
+</li>
+</ul>
+<h3 id="415">4.1.5 模块子节</h3>
+<p>对于2.0版本之前的版本，<strong>modules</strong> 子节包含了所有加载到服务器中的模块的配置。在2.0及后续版本中，模块的配置位于 <strong>raddb/modules</strong> 目录中的单独文件中。建议使用2.0配置，因为它保持了该部分的最小化。</p>
+<p>模块定义是另一个包含变量的配置部分：</p>
+<pre><code>module {
+  variable = value
+}
+</code></pre>
+<p>该模块由模块名称组成，如 <strong>pap</strong>、<strong>chap</strong> 或 <strong>detail</strong>。每个模块配置包含零个或多个 <strong>variable</strong> 定义。定义是特定于该模块的，并且不在不同模块之间共享。</p>
+<p>模块也可以有子节：</p>
+<pre><code>module {
+  variable = value
+  foo {
+    bar = hello
+  }
+}
+</code></pre>
+<p>这些子节是特定于某个模块的，并且不会在不同模块之间共享。</p>
+<p>模块可以有特定的 <strong>instances</strong>（实例）。模块实例是共享相同功能但使用不同配置的模块版本。例如，<strong>sql</strong> 模块连接到SQL数据库。如果服务器需要连接到两个不同的SQL数据库，就必须有两个 <strong>sql</strong> 模块实例。例如：</p>
+<pre><code>sql {
+  driver = &quot;rlm_sql_mysql&quot;
+  dialect = &quot;mysql&quot;
+  server = &quot;localhost&quot;
+  ...
+}
+</code></pre>
+<p>为了区分上面提到的两个数据库，第一个模块可以称为 <strong>mysql</strong>，第二个模块则由系统管理员称为 <strong>postgresql</strong>（而不仅仅是 <strong>sql</strong>）。任何对 <strong>sql</strong> 模块的引用都会导致服务器查找没有实例名称的配置。例如：</p>
+<pre><code>sql {
+  database = ...
+  server = ...
+  ...
+}
+</code></pre>
+<p>在这个例子中，<strong>sql</strong>、<strong>mysql</strong> 和 <strong>postgresql</strong> 都是 <strong>sql</strong> 模块的三个不同实例。</p>
+<h3 id="416">4.1.6 实例化子节</h3>
+<p><strong>instantiate</strong> 子节控制模块加载到服务器中的顺序。通常没有模块间的依赖关系，在这种情况下服务器可以按任何顺序加载模块。然而，如果存在依赖关系，顺序就变得重要。</p>
+<p>当模块实例化顺序很重要时，必须按顺序列出要加载的模块的名称。在下面的示例中，服务器将按顺序加载三个模块：</p>
+<pre><code>sql
+mysql
+postgresql
+</code></pre>
+<p><strong>instantiate</strong> 子节还指示服务器加载那些没有在其他节中直接引用的模块。</p>
+<h3 id="42">4.2 文件格式</h3>
+<p>文件格式围绕三个基本元素构建：变量赋值、变量和模块引用、以及节（sections）。</p>
+<p>配置文件的格式是基于行的文本。每个配置设置必须位于单独的一行。这种格式应该对任何曾见过其他Unix配置文件的人来说是熟悉的。</p>
+<p>允许注释，且注释通过使用 <code>#</code>（井号）字符来轻松识别：任何跟随在 <code>#</code> 后面的文本都会被视为注释，并因此被解析器忽略。空格、制表符和空白行都没有意义，也会被解析器忽略。</p>
+<p>无意中的换行可以通过在断开的行尾加上反斜杠（<code>\</code>）来取消。在下面的示例中，等号后的反斜杠强制将第一行和第二行合并为一行：</p>
+<pre><code>foo = \
+bar
+</code></pre>
+<p>上述示例被解析为：</p>
+<pre><code>foo = bar
+</code></pre>
+<h3 id="421">4.2.1 变量赋值</h3>
+<p>FreeRADIUS 通常有预定义的变量名，且这些变量有预定义的含义。例如，变量 <code>raddbdir</code> 定义了存储服务器配置文件的目录。变量的值可以是整数、字符串、文件名等。</p>
+<p>可以使用多种格式将字符串赋值给变量。与大多数系统一样，单引号、双引号和其他字符也可以用于字符串。例如：</p>
+<pre><code>secret = testing123
+secret = &quot;testing 1 2 3&quot;
+secret = 'testing 1 2 3'
+</code></pre>
+<p>第一个示例将 <code>secret</code> 变量设置为 <code>testing123</code>。第二个和第三个示例将其设置为 <code>testing 1 2 3</code>，其中包含空格。</p>
+<p>第二个和第三个示例之间的区别在于，双引号表示该字符串可以动态展开，而单引号表示该字符串的值将按“原样”处理，不会展开。</p>
+<p>动态扩展在使用变量间引用时非常有用（请参阅4.2.2节，变量引用）。例如：</p>
+<pre><code>foo = bar  # sets variable foo to value 'bar'
+other = &quot;my ${foo}&quot; # sets variable 'other' to value 'a bar'
+third = 'my ${foo}' # sets variable 'third' to value 'my ${foo}'
+</code></pre>
+<h3 id="422">4.2.2 变量引用</h3>
+<p>变量引用用于当多个变量包含相同值时。在此示例中，默认配置（第一行）定义了一个 <code>logdir</code> 变量。该目录中各个日志文件的位置随后在与 <code>logdir</code> 变量引用相关的地方引用：</p>
+<pre><code>logdir = /var/log/radius
+...
+file = ${logdir}/radius.log
+...
+detailfile = ${logdir}/detail
+</code></pre>
+<h3 id="423">4.2.3 模块引用</h3>
+<p>模块引用使服务器加载共享模块或在服务器接收到数据包时调用该模块。此类引用仅在服务器中的特定位置使用（例如，<code>Authorize</code> 或 <code>Authenticate</code> 子节中）并且在其他地方使用时会导致错误。</p>
+<h3 id="424">4.2.4 节</h3>
+<p>节定义了配置变量的逻辑组。网络管理员给每个节命名并使用 <code>{}</code> 字符来括起该组：</p>
+<pre><code>mygroup {
+  foo = bar
+  other = &quot;my ${foo}&quot;
+}
+</code></pre>
+<p>上面的示例定义了一个简单的名为 <code>mygroup</code> 的节，包含两个变量 <code>foo</code> 和 <code>other</code>。就像变量名一样，节名也被赋予特定的含义。在 FreeRADIUS 系统中，节名 <code>client</code> 定义了与特定 RADIUS 客户端相关联的变量集合。</p>
+<p>要为每个客户端定义多个客户端，创建一个 <code>client</code> 节。第二个限定符，称为“实例名”，会被添加到节中，以区分同一类型的不同节。以下示例显示了名为 foo 和 bar 的两个客户端：</p>
+<pre><code>client foo {
+  ipaddr = 192.0.2.100
+  secret = testing123
+}
+client bar {
+  ipaddr = 192.0.2.200
+  secret = very_secret
+}
+</code></pre>
+<p>有许多节类型，包括 <code>client</code>、<code>home_server</code>、<code>home_server_pool</code> 和 <code>realm</code>，它们将被服务器识别。每个节类型有一组特定的变量，可以在该节中使用。展示这些概念的示例可以在默认配置中找到，节名称、功能和变量赋值都在每行的注释中进行了文档说明。</p>
+<h3 id="425">4.2.5 通过引用包含文件</h3>
+<p>配置文件可以被拆分成多个部分，然后通过使用 <code>$INCLUDE</code> 指令在加载时重新组合。此指令使得配置能够引用当前文件中的特定部分。</p>
+<p>如果引用的文件已插入文件中代替 $INCLUDE，那么以下两种配置是相同的：</p>
+<ol>
+<li></li>
+</ol>
+<pre><code>foo = bar
+other = &quot;my ${foo}&quot;
+</code></pre>
+<ol>
+<li></li>
+</ol>
+<pre><code>foo = bar
+$INCLUDE other.conf
+</code></pre>
+<p>示例 2 中使用了 <code>$INCLUDE</code> 指令来引用 <code>other.conf</code> 文件，从而得到了与示例 1 相同的配置。</p>
+<p>网络管理员使用 <code>$INCLUDE</code> 指令来组织配置文件。被包含的文件如果以 / 开头，则为绝对路径。否则，路径是相对于当前文件的。表 4.2.4 显示了路径的差异：</p>
+<table>
+<thead>
+<tr>
+<th>路径差异</th>
+<th>绝对路径</th>
+<th>相对路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$INCLUDE /etc/raddb/foo.conf</code></td>
+<td><code>$INCLUDE example/foo.conf</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="43">4.3 数据包处理部分</h3>
+<p><code>Processing sections</code> 构成了驱动服务器策略的引擎。当服务器接收到请求或发送响应时，执行一个或多个处理部分。服务器的行为和进入响应中的信息完全取决于各个部分的处理方式。</p>
+<p>请求的处理取决于以下四个信息部分：</p>
+<ul>
+<li>与请求相关的数据，</li>
+<li>每个处理部分的内容，</li>
+<li>每个处理部分关联的操作表，</li>
+<li>算法本身的处理方式。</li>
+</ul>
+<p>请求处理部分的内容是 Unlang 语句，已在其他地方描述（见“man unlang”）。</p>
+<hr />
+<h3 id="431">4.3.1 术语和定义</h3>
+<p>本节描述了服务器使用的处理算法。对于基本安装，用户无需详细了解此部分内容。</p>
+<h3 id="_1">请求</h3>
+<p>每个请求都与多个属性列表相关联，这些请求由服务器接收。每个列表都有名称。表中给出了这些列表名称的含义。</p>
+<p>属性通过列表名称、冒号和属性名称（例如，request:User-Name，或 reply:Class）进行引用。每个列表都有特定的用途。单独的模块可能会编辑一个或多个列表；例如，mschap模块将会把MS-CHAP属性添加到 reply 列表中。或者，管理员可以使用 "unlang" 语句直接编辑这些列表。</p>
+<table>
+<thead>
+<tr>
+<th>列表名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>request</td>
+<td>包含请求中接收到的属性</td>
+</tr>
+<tr>
+<td>reply</td>
+<td>包含将在任何回复中发送的属性</td>
+</tr>
+<tr>
+<td>control</td>
+<td>包含服务器用作临时存储的“内部”属性。这些属性不会在请求或回复中发送</td>
+</tr>
+<tr>
+<td>proxy-request</td>
+<td>包含在任何代理请求中发送的属性。其内容来自“请求”列表，代理操作前取出</td>
+</tr>
+<tr>
+<td>proxy-reply</td>
+<td>包含从主服务器接收到的属性，并用来重新初始化“回复”列表</td>
+</tr>
+<tr>
+<td>coa</td>
+<td>仅对 Access-Request 和 Accounting-Request 数据包有效。用于创建 CoA-Request 数据包并将其发送到 NAS。可以使用“disconnect”代替，从而发送 Disconnect-Request 数据包到 NAS</td>
+</tr>
+<tr>
+<td>coa-reply</td>
+<td>仅对 Access-Request 和 Accounting-Request 数据包有效。用于在发送 CoA-Request 数据包后接收 CoA-ACK 或 CoA-NAK 数据包。可以使用“disconnect-reply”代替，指代任何回复中的属性，表示发送 Disconnect-Request 数据包</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">处理部分</h3>
+<p>每个请求都要经过一个或多个处理部分。处理部分及其含义如下表所示。附加的描述见第 4.3.2 节。</p>
+<table>
+<thead>
+<tr>
+<th>处理部分</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>authorize</td>
+<td>Access-Request 数据包通过 authorize 部分进行处理，以获取“已知正确”的密码用于身份验证之前</td>
+</tr>
+<tr>
+<td>authenticate</td>
+<td>Access-Request 数据包通过 authenticate 部分进行处理，执行特定身份验证方法的模块</td>
+</tr>
+<tr>
+<td>post-auth</td>
+<td>Access-Request 数据包通过 post-auth 部分进行处理，回复发送到 NAS 之前</td>
+</tr>
+<tr>
+<td>preacct</td>
+<td>Accounting-Request 数据包通过 preacct 部分进行处理，以便在执行计费前对其进行标准化</td>
+</tr>
+<tr>
+<td>accounting</td>
+<td>Accounting-Request 数据包通过 accounting 部分进行处理，执行会计日志记录到文件、SQL 或其他会计功能</td>
+</tr>
+<tr>
+<td>pre-proxy</td>
+<td>所有数据包在发送到主服务器之前都通过 pre-proxy 部分进行处理</td>
+</tr>
+<tr>
+<td>post-proxy</td>
+<td>所有数据包在接收到主服务器的回复后都通过 post-proxy 部分进行处理</td>
+</tr>
+<tr>
+<td>recv-coa</td>
+<td>CoA-Request 和 Disconnect-Request 数据包通过 recv-coa 部分进行处理，在接收到来自 NAS 的 CoA 请求时</td>
+</tr>
+<tr>
+<td>send-coa</td>
+<td>CoA-Request 和 Disconnect-Request 数据包通过 send-coa 部分进行处理，在回复发送到 NAS 之前</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_3">处理部分及其含义</h4>
+<p>每个处理部分是要执行的模块或 Unlang 语句的列表。列表是按从上到下的顺序处理的。</p>
+<p>在某些情况下，跳过列表中的部分内容或提前退出处理是有用的。例如，如果由于策略规则发送了“拒绝”信号，通常没有必要继续处理该列表。</p>
+<p>当执行模块时，返回代码如“reject”、“noop”或“ok”就是结果。这些返回代码控制列表的处理。下表显示了返回代码的名称及其含义：</p>
+<table>
+<thead>
+<tr>
+<th>返回代码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>notfound</td>
+<td>未找到信息</td>
+</tr>
+<tr>
+<td>noop</td>
+<td>模块没有执行任何操作</td>
+</tr>
+<tr>
+<td>ok</td>
+<td>模块成功执行</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>模块更新了请求</td>
+</tr>
+</tbody>
+</table>
+<p>在 FreeRADIUS 中，每个处理部分都有默认的响应行为，比如“noop”通常会被忽略，“reject”会导致服务器停止处理列表等。每个返回代码都有一个优先级，“reject”的优先级比“noop”更高。</p>
+<p>表格中的返回代码及其含义如下：</p>
+<ul>
+<li><strong>fail</strong>：模块失败</li>
+<li><strong>reject</strong>：模块拒绝请求</li>
+<li><strong>userlock</strong>：用户被锁定</li>
+<li><strong>invalid</strong>：配置无效</li>
+<li><strong>handled</strong>：模块已经处理了请求</li>
+</ul>
+<p><strong>Action Table（动作表）</strong>列出了处理过程中常见返回代码的默认动作：</p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>default</strong></td>
+<td>noop</td>
+</tr>
+<tr>
+<td><strong>reject</strong></td>
+<td>return</td>
+</tr>
+<tr>
+<td><strong>fail</strong></td>
+<td>return</td>
+</tr>
+<tr>
+<td><strong>ok</strong></td>
+<td>continue（优先级3）</td>
+</tr>
+<tr>
+<td><strong>handled</strong></td>
+<td>return</td>
+</tr>
+<tr>
+<td><strong>invalid</strong></td>
+<td>return</td>
+</tr>
+<tr>
+<td><strong>userlock</strong></td>
+<td>return</td>
+</tr>
+<tr>
+<td><strong>notfound</strong></td>
+<td>continue（优先级1）</td>
+</tr>
+<tr>
+<td><strong>noop</strong></td>
+<td>continue（优先级2）</td>
+</tr>
+<tr>
+<td><strong>updated</strong></td>
+<td>continue（优先级4）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Algorithm（算法）</strong>部分描述了服务器处理请求的步骤：</p>
+<ol>
+<li>服务器每次处理请求时，都会先以默认的返回代码和优先级启动请求。</li>
+<li>它通过处理过程中的各个部分，直到列表结束，最终决定是否继续到下一个部分，或是响应请求。
+上面的算法描述了如何处理请求。它首先设置一个默认的返回代码和优先级，然后对于每个请求处理的部分，会评估其中的每个语句。每次评估会根据动作表返回不同的动作。若动作为“return”，则会跳出并返回当前的代码和优先级。如果动作为“continue”，则根据优先级调整返回的代码和优先级。</li>
+</ol>
+<p><strong>evaluate</strong> 函数可以被理解为执行某个模块（例如：mschap）或解释“unlang”语句。若某个“unlang”语句涉及子部分，算法会递归地在该子部分上运行。</p>
+<p>接下来的部分涉及到服务器如何处理请求。服务器的请求处理过程通过一个或多个包处理部分来完成，执行 FreeRADIUS 时，服务器可以涉及以下任意一个处理部分：</p>
+<ul>
+<li>authorize</li>
+<li>session</li>
+<li>authenticate</li>
+<li>post-auth</li>
+<li>preacct</li>
+<li>accounting</li>
+<li>pre-proxy</li>
+<li>post-proxy</li>
+<li>send-coa</li>
+<li>recv-coa</li>
+</ul>
+<p>这些处理部分定义了请求在服务器中如何逐步执行，并帮助确保服务器能够根据设置进行认证、授权等操作。
+图4.3展示了不同操作所使用的各种数据包处理部分。
+<img alt="alt text" src="../image.png" />
+<strong>认证（Authentication）</strong><br />
+1. 新的认证请求<br />
+2. 进入授权（Authorize）部分<br />
+3. 进入认证（Authenticate）部分<br />
+4. 进入后认证（Post-Auth）部分<br />
+5. 发送响应</p>
+<p><strong>记账（Accounting）</strong><br />
+1. 新的记账请求<br />
+2. 进入预处理（Preacct）部分<br />
+3. 进入记账（Accounting）部分<br />
+4. 发送响应</p>
+<p><strong>代理认证（Proxyed Authentication）</strong><br />
+1. 新的认证请求<br />
+2. 进入授权（Authorize）部分<br />
+3. 进入预代理（Pre-Proxy）部分<br />
+4. 进入后代理（Post-Proxy）部分<br />
+5. 发送响应</p>
+<p><strong>代理记账（Proxyed Accounting）</strong><br />
+1. 新的记账请求<br />
+2. 进入预处理（Preacct）部分<br />
+3. 进入记账（Accounting）部分<br />
+4. 进入预代理（Pre-Proxy）部分<br />
+5. 进入后代理（Post-Proxy）部分<br />
+6. 发送响应</p>
+<h3 id="433">4.3.3认证部分</h3>
+<p>此部分描述了当服务器收到一个接入请求包并进行认证时的处理过程。</p>
+<h4 id="authorize">授权（Authorize）部分</h4>
+<p>此部分的名称为<strong>authorize</strong>，历史原因导致早期的服务器没有后续认证部分，
+因此更准确的描述应该是<strong>预认证（pre-authentication）</strong>。</p>
+<p>授权部分处理<strong>Access-Request</strong>包，规范化请求，确定使用哪种认证方法，
+并设置“已知正确”的密码（即在数据库中找到的有效密码）或者告知服务器请求应通过代理处理。</p>
+<p>一旦授权部分完成对数据包的处理，服务器会检查返回的代码。如果返回代码是<strong>noop</strong>、<strong>notfound</strong>、<strong>ok</strong>或<strong>updated</strong>，
+则继续进行请求处理。如果返回代码是<strong>handled</strong>，
+则认为是某个模块已完成响应内容的处理，服务器会发送回复消息。否则，服务器会将认证视为被拒绝，并运行后认证部分。</p>
+<p>如果认证未被拒绝，则服务器继续处理请求，查找<strong>控制（control）</strong>部分中的<strong>Auth-Type</strong>属性。
+一旦找到该属性，就会执行名为<strong>authenticate</strong>的子部分，如上所述。
+这种功能在2.0.0之前的版本中是历史性的，建议在版本2.0.0及以后使用Unlang策略，
+这样更加灵活且易于理解。</p>
+<p><strong>注意：</strong><br />
+授权部分不应在回复中设置属性。尽管这种做法广泛传播，并且在默认配置中作为历史遗留原因存在，但它并不是一个好的策略设计。授权部分应用于定义策略，而后认证部分应用于设置回复属性。</p>
+<h3 id="the-session-section">会话部分（The Session Section）</h3>
+<p>会话部分用于在强制执行<strong>Simultaneous-Use</strong>（同时使用）或<strong>double login detection</strong>（双重登录检测）时执行数据库查找。仅用于<strong>Access-Request</strong>数据包。</p>
+<table>
+<thead>
+<tr>
+<th>代码（Code）</th>
+<th>动作（Action）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default</td>
+<td>fail</td>
+</tr>
+<tr>
+<td>reject</td>
+<td>return</td>
+</tr>
+<tr>
+<td>fail</td>
+<td>continue（优先级 1）</td>
+</tr>
+<tr>
+<td>ok</td>
+<td>return</td>
+</tr>
+<tr>
+<td>handled</td>
+<td>return</td>
+</tr>
+<tr>
+<td>invalid</td>
+<td>return</td>
+</tr>
+<tr>
+<td>userlock</td>
+<td>return</td>
+</tr>
+<tr>
+<td>notfound</td>
+<td>return</td>
+</tr>
+<tr>
+<td>noop</td>
+<td>return</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>return</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表4.3.3.1 会话部分的动作表</strong></p>
+<h3 id="the-authenticate-section">认证部分（The Authenticate Section）</h3>
+<p>认证部分仅在服务器进行本地认证请求并且在代理时被完全绕过时使用。此部分不同于其他部分，它由一系列子部分组成，其中只有一个被执行。执行的子部分取决于<strong>控制列表</strong>（control list）中<strong>Auth-Type</strong>属性的内容。</p>
+<p><strong>Auth-Type</strong>属性也可以引用模块（例如，eap），而不是子部分，在这种情况下，只有该模块会被处理。</p>
+<p><strong>Auth-Type</strong>子部分可以包含一系列的Unlang语句，这在修改认证结果时非常有用。</p>
+<p><strong>一旦认证部分（authenticate）完成，后认证部分（post-auth）会被执行。</strong></p>
+<table>
+<thead>
+<tr>
+<th>代码（Code）</th>
+<th>动作（Action）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default</td>
+<td>reject</td>
+</tr>
+<tr>
+<td>reject</td>
+<td>return</td>
+</tr>
+<tr>
+<td>fail</td>
+<td>continue（优先级 1）</td>
+</tr>
+<tr>
+<td>ok</td>
+<td>return</td>
+</tr>
+<tr>
+<td>handled</td>
+<td>return</td>
+</tr>
+<tr>
+<td>invalid</td>
+<td>continue（优先级 1）</td>
+</tr>
+<tr>
+<td>userlock</td>
+<td>return</td>
+</tr>
+<tr>
+<td>notfound</td>
+<td>return</td>
+</tr>
+<tr>
+<td>noop</td>
+<td>continue（优先级 1）</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>continue（优先级 1）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表4.3.3.2 认证部分的动作表</strong></p>
+<h3 id="the-post-auth-section">后认证部分（The Post-auth Section）</h3>
+<p>后认证部分包含在认证过程成功或失败（被拒绝）之后应用的策略。</p>
+<ul>
+<li>当认证成功时，后认证部分的内容会被处理，并与任何其他相关部分一起执行。</li>
+<li>当认证失败时，服务器会查找一个名为<strong>Post-Auth-Type Reject</strong>的子部分，如果找到，则只执行该部分中的语句。如果没有找到该子部分，则不会进行后认证处理。</li>
+</ul>
+<p>为了更新任何回复属性，建议只使用后认证部分，尽管这可能会比较复杂。许多模块只在其<strong>authorize</strong>方法中提供回复属性。该方法可以通过使用<code>Module-name.authorize</code>语法（例如，sql.authorize）从后认证部分调用。</p>
+<h3 id="434-accounting">账单部分（4.3.4 Accounting）</h3>
+<p>本节描述了服务器在接收到账单请求时的处理过程。</p>
+<h3 id="the-preacct-section">预处理部分（The Preacct Section）</h3>
+<p>预处理部分用于处理<strong>Accounting-Request</strong>数据包，通过标准化请求并确定是否需要代理该请求。</p>
+<h3 id="preacct"><strong>Preacct 部分</strong></h3>
+<p>如果该部分返回 <strong>noop</strong>、<strong>ok</strong> 或 <strong>updated</strong>，则会处理 Accounting 部分。否则，服务器停止处理请求，并且不会发送 <strong>Accounting-Response</strong> 数据包。</p>
+<h4 id="preacct_1"><strong>Preacct 部分的返回代码与操作</strong>：</h4>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default</td>
+<td>noop（无操作）</td>
+</tr>
+<tr>
+<td>reject</td>
+<td>return（返回，结束）</td>
+</tr>
+<tr>
+<td>fail</td>
+<td>return（返回，结束）</td>
+</tr>
+<tr>
+<td>ok</td>
+<td>continue（继续，优先级2）</td>
+</tr>
+<tr>
+<td>handled</td>
+<td>return（返回，结束）</td>
+</tr>
+<tr>
+<td>invalid</td>
+<td>return（返回，结束）</td>
+</tr>
+<tr>
+<td>userlock</td>
+<td>return（返回，结束）</td>
+</tr>
+<tr>
+<td>notfound</td>
+<td>return（返回，结束）</td>
+</tr>
+<tr>
+<td>noop</td>
+<td>continue（继续，优先级1）</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>continue（继续，优先级2）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="accounting"><strong>Accounting 部分</strong></h3>
+<p>Accounting 部分用于处理 <strong>Accounting-Request</strong> 数据包。</p>
+<p>如果 <strong>Acct-Type</strong> 属性在 <strong>control</strong> 列表中设置，则只处理该命名的子部分。否则，整个 <strong>accounting</strong> 部分会被处理，而 <strong>acct-type</strong> 部分会被忽略。该部分的作用是检查请求是否应在处理完 Accounting 部分后转发（proxy）。</p>
+<h4 id="accounting_1"><strong>Accounting 部分的返回代码与操作</strong>：</h4>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default</td>
+<td>noop（无操作）</td>
+</tr>
+<tr>
+<td>reject</td>
+<td>return（返回，结束）</td>
+</tr>
+<tr>
+<td>fail</td>
+<td>return（返回，结束）</td>
+</tr>
+<tr>
+<td>ok</td>
+<td>continue（继续，优先级2）</td>
+</tr>
+<tr>
+<td>handled</td>
+<td>return（返回，结束）</td>
+</tr>
+<tr>
+<td>invalid</td>
+<td>return（返回，结束）</td>
+</tr>
+<tr>
+<td>userlock</td>
+<td>return（返回，结束）</td>
+</tr>
+<tr>
+<td>notfound</td>
+<td>return（返回，结束）</td>
+</tr>
+<tr>
+<td>noop</td>
+<td>continue（继续，优先级1）</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>continue（继续，优先级3）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4"><strong>代理认证</strong></h3>
+<p>这一部分描述了服务器在接收到访问请求后如何进行代理。</p>
+<h4 id="_5"><strong>授权部分</strong></h4>
+<p>在代理认证过程中，授权部分的处理方式与正常认证过程相同。更多信息请参见第4.3.3节。</p>
+<h4 id="_6"><strong>代理前部分</strong></h4>
+<p>代理前部分用于处理在代理之前的请求。此部分适用于所有请求，包括 <strong>Access-Request</strong>、<strong>Accounting-Request</strong>、<strong>CoA-Request</strong> 和 <strong>Disconnect-Request</strong>。</p>
+<p>如果针对不同类型的数据包需要不同的策略，可以使用 <strong>home_server_pool</strong> 部分来定义 <strong>virtual_server</strong> 条目。该虚拟服务器可以包含 <strong>pre-proxy</strong> 和 <strong>post-proxy</strong> 部分，这些部分仅在向主服务器发送请求时执行。</p>
+<p>由于主服务器是按类型划分的，并且与发送的请求类型相关，因此此配置允许为每种请求类型定义不同的策略。</p>
+<h4 id="_7"><strong>代理后部分</strong></h4>
+<p>代理后部分用于处理来自主服务器的回复。与代理前部分一样，此部分适用于所有请求，包括 <strong>Access-Request</strong>、<strong>Accounting-Request</strong>、<strong>CoA-Request</strong> 和 <strong>Disconnect-Request</strong>。</p>
+<p>代理后部分通常用于过滤来自主服务器的回复，以删除不合适的授权，如 VLAN 设置或 IP 地址分配。</p>
+<p>与代理前部分一样，如果不同类型的数据包需要不同的策略，<strong>home_server_pool</strong> 部分可以用于定义 <strong>virtual_server</strong> 条目。该虚拟服务器可以包含 <strong>pre-proxy</strong> 和 <strong>post-proxy</strong> 部分，这些部分仅在向主服务器发送请求时执行。</p>
+<p>主服务器可能不会在 <strong>response_window</strong> 时间内响应代理请求（见 <strong>proxy.com</strong> 文件）。当 <strong>response_window</strong> 超时后，代理请求的服务器会执行 <strong>Post-Proxy-Type Fail</strong> 子部分。这种行为允许管理员为响应缓慢的主服务器定义策略。</p>
+<p>一旦代理后部分执行完毕，所有现有的回复列表中的属性都会被丢弃，代理后属性将被复制到回复列表中。这种行为允许主服务器定义默认的回复发送回 NAS。</p>
+<hr />
+<h3 id="_8"><strong>代理会计</strong></h3>
+<h4 id="_9"><strong>代理会计预处理部分</strong></h4>
+<p>在代理会计过程中，<strong>preacct</strong> 部分的处理与正常会计过程相同。更多信息请参见第4.3.4节。</p>
+<h3 id="_10"><strong>会计部分</strong></h3>
+<p>在代理会计过程中，会计部分的处理与正常会计过程相同。更多信息请参见第4.3.4节。</p>
+<h4 id="_11"><strong>代理前部分</strong></h4>
+<p>在代理会计过程中，代理前部分的处理与代理认证过程中的相同。更多信息请参见第4.3.5节。</p>
+<h4 id="_12"><strong>代理后部分</strong></h4>
+<p>在代理会计过程中，代理后部分的处理与代理认证过程中的相同。更多信息请参见第4.3.5节。</p>
+<hr />
+<h3 id="coa"><strong>授权变更 (CoA)</strong></h3>
+<h4 id="coa_1"><strong>发送 CoA 部分</strong></h4>
+<p>发送 CoA 部分负责向 NAS 发送授权变更消息。这些消息将会断开用户与网络的连接。网络管理员也可以使用授权变更消息向用户的会话中添加额外的过滤规则。例如，可以设置带宽限制。</p>
+<h4 id="coa_2"><strong>接收 CoA 部分</strong></h4>
+<p>接收 CoA 部分用于处理来自 NAS 的 <strong>CoA-Request</strong> 或 <strong>Disconnect-Request</strong> 包。此部分可以导致请求被代理，此时将按上面描述的方式执行代理前后部分。</p>
+<p>接收 CoA 部分接收并处理授权变更消息。此部分中的模块可以显示消息，例如，如果用户被断开连接。</p>
+<hr />
+<h3 id="radiusdconf"><strong>简化的 radiusd.conf</strong></h3>
+<p>默认的配置文件包含成千上万行配置定义和注释。尽管所有这些数据最初可能显得很庞大，但服务器的配置可以非常简单。默认配置是复杂的，因为它支持简单的会计和多种认证协议。</p>
+<p>这一节提供了一个简单配置文件的示例，展示了服务器配置的简易程度。服务器的唯一要求是：</p>
+<ul>
+<li>监听 IP 地址和端口</li>
+<li>接受来自已知客户端的请求</li>
+<li>不使用任何插件模块</li>
+<li>设置认证方式为“Accept”</li>
+</ul>
+<h3 id="_13">简单配置示例</h3>
+<p>下面是一个简单配置的示例。将以下内容放入名为 <code>small.conf</code> 的文件中：</p>
+<pre><code>listen {
+    type = auth
+    ipaddr = *
+    port = 0
+}
+
+client localhost {
+    # 允许来自127.0.0.1的包
+    ipaddr = 127.0.0.1
+    secret = testing123
+}
+
+modules {
+    # 不使用任何模块
+}
+
+authorize {
+    # 返回 PAP 和 CHAP 的 Access-Accept
+    update control {
+        Auth-Type := Accept
+    }
+}
+</code></pre>
+<p>要以调试模式启动服务器，请使用 <code>small.conf</code> 文件代替默认的 <code>radiusd.conf</code> 文件。
+您可以通过以下命令执行此操作：</p>
+<pre><code>$ radiusd -X -n small
+</code></pre>
+<p>该配置会处理所有来自 <code>localhost</code> 的 <strong>Access-Request</strong>，其中包含 PAP 或 CHAP 认证方法，
+并返回 <strong>Access-Accept</strong>。</p>
+<hr />
+<h3 id="44">4.4 用户文件</h3>
+<p><code>files</code> 模块通过 <code>users</code> 文件授权每个用户的请求。<code>users</code> 文件位于 RADIUS 数据库目录中。</p>
+<p><code>users</code> 文件将每一行以井号（<code>#</code>）开头的部分视为注释，忽略掉。</p>
+<p>每个条目由交替出现的检查项和回复项行组成。</p>
+<p>每个检查项或回复项是一个属性，其格式为 <code>name = value</code>。
+可以在每行放置多个项。如果每行上有多个项，则项之间必须用逗号隔开。</p>
+<p>该文件以检查项行开始：用户名后跟（可能为空的）检查项列表。
+检查项行只能限定为一行。</p>
+<p>然后是带有制表符的回复项列表（可能为空）。
+回复项可以分多行指定；但是，每行（除最后一行外）必须以逗号结尾，
+且回复项的最后一行不得以逗号结尾。</p>
+<p>检查项是服务器用来匹配传入访问请求的属性列表。如果所有检查项都与传入的请求匹配，
+服务器会将这些属性添加到回复中。该过程会为 <code>users</code> 文件中的所有条目重复执行。</p>
+<p>如果传入的请求与任何一行中的检查项不匹配，<code>files</code> 模块会返回 <strong>notfound</strong> 回复，
+表示它找不到该用户的记录。</p>
+<p>以下是一个 <code>users</code> 文件条目的示例。它说明了一个用户名为 "bob" 的用户存在，
+密码为 "hello"。当用户 "bob" 登录时，回复信息会显示 "Hello, bob"。</p>
+<pre><code>bob  Cleartext-Password := &quot;hello&quot;
+     Reply-Message := &quot;Hello, %{User-Name}&quot;
+</code></pre>
+<p><strong>注意：</strong> 特殊的用户名 <strong>DEFAULT</strong> 匹配所有用户名。</p>
+<p>条目是按顺序处理的，从 <code>users</code> 文件的顶部开始。
+如果条目包含特殊项 <code>Fall-Through = No</code> 作为回复属性，则在此时文件处理会停止，
+如果没有匹配的条目，服务器不会继续处理。如果回复项没有包含 <code>Fall-Through</code> 属性，
+它将被视为默认的 <code>Fall-Through = No</code> 属性。
+如果条目包含特殊项 <code>Fall-Through = Yes</code> 作为回复属性，则处理会继续到下一个条目。</p>
+<p><code>Fall-Through</code> 应谨慎使用，服务器应在调试模式下进行测试，
+并使用多个测试请求验证配置的条目是否按预期行为执行。</p>
+<p>4.4.1 操作符</p>
+<p>除了 <code>=</code> 操作符外，其他操作符可以用于检查项或回复项列表中的属性。以下是操作符及其定义的列表：</p>
+<ul>
+<li>
+<p><strong>Attribute = Value</strong><br />
+  尽管不允许作为 RADIUS 协议属性的检查项使用，但此操作符可以用于服务器配置属性（例如，Auth-Type）。它仅在没有相同属性项时为属性设置值。<br />
+  作为回复项，它被解释为“将该项添加到回复列表，但前提是没有其他相同属性项。”</p>
+</li>
+<li>
+<p><strong>Attribute := Value</strong><br />
+  始终与检查项匹配。在配置项中，它替换任何相同名称的属性。如果请求中没有此名称的属性，则添加该属性。<br />
+  作为回复项，它具有相同的含义，但仅适用于回复项。</p>
+</li>
+<li>
+<p><strong>Attribute == Value</strong><br />
+  作为检查项，它仅在请求中存在指定属性并且该属性值等于给定值时才匹配。<br />
+  不允许作为回复项使用。</p>
+</li>
+<li>
+<p><strong>Attribute += Value</strong><br />
+  总是与检查项匹配，并将当前属性的值添加到配置项的列表中。<br />
+  作为回复项，属性值被添加到回复项中。</p>
+</li>
+<li>
+<p><strong>Attribute != Value</strong><br />
+  作为检查项，它仅在请求中存在指定属性，并且该属性值不等于给定值时才匹配。<br />
+  不允许作为回复项使用。</p>
+</li>
+<li>
+<p><strong>Attribute &gt; Value</strong><br />
+  作为检查项，它仅在请求中包含一个属性，且其值大于给定值时匹配。<br />
+  不允许作为回复项使用。</p>
+</li>
+<li>
+<p><strong>Attribute &gt;= Value</strong><br />
+  作为检查项，它仅在请求中包含一个属性，且其值大于或等于给定值时匹配。<br />
+  不允许作为回复项使用。</p>
+</li>
+<li>
+<p><strong>Attribute &lt; Value</strong><br />
+  作为检查项，它仅在请求中包含一个属性，且其值小于给定值时匹配。<br />
+  不允许作为回复项使用。</p>
+</li>
+<li>
+<p><strong>Attribute &lt;= Value</strong><br />
+  作为检查项，它仅在请求中包含一个属性，且其值小于或等于给定值时匹配。<br />
+  不允许作为回复项使用。</p>
+</li>
+<li>
+<p><strong>Attribute =~ Expression</strong><br />
+  作为检查项，它仅在请求中包含与给定正则表达式匹配的属性时匹配。此操作符只能应用于字符串属性。<br />
+  不允许作为回复项使用。</p>
+</li>
+<li>
+<p><strong>Attribute !~ Expression</strong><br />
+  作为检查项，它仅在请求中包含与给定正则表达式不匹配的属性时匹配。此操作符只能应用于字符串属性。<br />
+  不允许作为回复项使用。</p>
+</li>
+<li>
+<p><strong>Attribute =* Value</strong><br />
+  作为检查项，它仅在请求中包含指定的属性时匹配，不考虑其值。<br />
+  允许作为回复项使用。</p>
+</li>
+<li>
+<p><strong>Attribute !=* Value</strong><br />
+  作为检查项，它仅在请求中不包含指定的属性时匹配，不考虑其值。<br />
+  不允许作为回复项使用。</p>
+</li>
+</ul>
+<p>4.4.2 示例</p>
+<p>本节提供了可以包含在 <code>users</code> 文件中的 FreeRADIUS 代码示例。</p>
+<ol>
+<li>以下示例告诉服务器用户“bob”具有已知的有效密码“hello”，因此回复项将为空。</li>
+</ol>
+<pre><code>bob Cleartext-Password := &quot;hello&quot;
+</code></pre>
+<ol>
+<li>此示例指示服务器对所有用户进行身份验证，验证文件为 <code>/etc/passwd</code>。
+请注意，此示例使得 EAP 身份验证失败。</li>
+</ol>
+<pre><code>DEFAULT Auth-Type = System
+Fall-Through = Yes
+</code></pre>
+<ol>
+<li>如果请求包中包含属性 Service-Type 和 Framed-Protocol 以及给定的值，
+则这些属性将包括在回复中。此示例还展示了如何指定多个回复项。</li>
+</ol>
+<pre><code>DEFAULT Service-Type == Framed-User, Framed-Protocol == PPP
+Service-Type = Framed-User,
+Framed-Protocol = PPP
+Fall-Through = Yes
+</code></pre>
+<p>参见随服务器提供的 <code>users</code> 文件，里面包含更多的示例和注释。</p>
+<p>4.4.3 <code>users</code> 文件故障排除</p>
+<p>可以通过以调试模式（<code>-X</code>）运行服务器并使用 <code>radclient</code> 程序来检查 <code>users</code> 文件。
+<code>radclient</code> 程序将打印出与特定条目匹配的请求。
+服务器会列出匹配的条目，以便验证预期的结果。
+出现问题时，可以在执行其他操作之前使用此方法。</p>
+<p>注意编写 <code>users</code> 文件时要小心。错误配置服务器接受请求而不是拒绝请求。
+请将条目放在合适的位置，仅在需要时使用 <code>Fall-Through</code> 条目。</p>
+<p>拒绝某些请求的条目应放在文件的顶部，并且不应在其回复项中包含 <code>Fall-Through</code>。
+对特定用户没有 <code>Fall-Through</code> 条目的条目应放在后面。任何默认条目应放在文件的末尾。
+当服务器到达 <code>DEFAULT</code> 条目时，它将停止处理，除非该条目包含 <code>Fall-Through</code>。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>
