@@ -1,0 +1,1283 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../1-freeradius-introduce/">
+      
+      
+        <link rel="next" href="../3-installation-requirements/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>工作原理 - FreeRADIUS Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#-radius" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="FreeRADIUS Documentation" class="md-header__button md-logo" aria-label="FreeRADIUS Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FreeRADIUS Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              工作原理
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="FreeRADIUS Documentation" class="md-nav__button md-logo" aria-label="FreeRADIUS Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    FreeRADIUS Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-freeradius-introduce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    简介
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    工作原理
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    工作原理
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#20-aaa" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.0 什么是AAA？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-aaa" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 AAA定义
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 AAA定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.1 认证
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#212" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.2 授权
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      认证与授权
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#213-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.3 计费（account）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#214-auditing" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.4 审计（auditing）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 RADIUS系统组件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      RADIUS组件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#221" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.1 网络接入服务器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#222-radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.2 RADIUS服务器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#radius_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      RADIUS服务器策略
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#223" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.3 数据存储
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#radius_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      RADIUS服务器与数据存储的主要区别
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#224-radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.4 RADIUS系统组件总结
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 RADIUS会话过程
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 RADIUS会话消息
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 RADIUS会话消息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#241" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.1 消息属性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#242" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.2 属性类型
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#243" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.3 属性定义字典
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#244" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.4 字典文件格式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#245" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.5 服务器端属性
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#246" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.6 处理请求
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-installation-requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安装要求
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-configuration-requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    配置指南
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-glossary%20of%20terms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    术语表
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-Frequently%20Asked%20Questions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#20-aaa" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.0 什么是AAA？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-aaa" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 AAA定义
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 AAA定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.1 认证
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#212" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.2 授权
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      认证与授权
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#213-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.3 计费（account）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#214-auditing" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.4 审计（auditing）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 RADIUS系统组件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      RADIUS组件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#221" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.1 网络接入服务器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#222-radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.2 RADIUS服务器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#radius_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      RADIUS服务器策略
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#223" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.3 数据存储
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#radius_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      RADIUS服务器与数据存储的主要区别
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#224-radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.4 RADIUS系统组件总结
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 RADIUS会话过程
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 RADIUS会话消息
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 RADIUS会话消息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#241" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.1 消息属性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#242" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.2 属性类型
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#243" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.3 属性定义字典
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#244" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.4 字典文件格式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#245" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.5 服务器端属性
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#246" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.6 处理请求
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="-radius">第二章 - RADIUS工作原理</h1>
+<p>本章内容描述了：
+- AAA（认证、授权和计费）
+- RADIUS系统组件
+- RADIUS会话过程
+- RADIUS会话消息</p>
+<h3 id="20-aaa">2.0 什么是AAA？</h3>
+<p>AAA代表“认证、授权和计费”。它定义了一种架构，用于验证用户的身份并授予对用户账户和活动的访问权限。当不使用AAA时，该架构被描述为“开放”，即任何人都可以访问并执行任何操作，而无需任何跟踪。</p>
+<p>在系统中可以仅包含AAA的一部分。例如，如果公司不关心用户的网络使用情况，它们可以选择仅进行认证和授权用户，而不进行计费。同时，监控系统可能会将不寻常的用户活动（计费）转交给网络中的另一个部分进行处理。</p>
+<p>RADIUS是众多认证、授权和计费协议中的一种，其他AAA协议包括TACACS+和Diameter。</p>
+<p>没有AAA，网络管理员必须静态配置网络。即使在最早的拨号访问时代，网络管理员也发现静态模型不够完善。AAA确保了网络政策的灵活性。AAA还为网络管理员提供了管理多系统的能力；没有AAA，他们将无法明确界定连接选项。</p>
+<p>今天，移动设备的普及、多样化的网络消费者和各种接入方式结合起来，共同创造了一个对AAA提出更高要求的环境。几乎我们访问网络的所有方式：无线热点都需要AAA来确保安全；分区的网络需要AAA来强制访问控制；所有远程访问形式都需要AAA来授权远程用户。</p>
+<h3 id="21-aaa">2.1 AAA定义</h3>
+<p>以下各节描述了AAA解决方案的各个部分及其工作原理。</p>
+<h4 id="211">2.1.1 认证</h4>
+<p>认证是指通过匹配用户提供的凭据（例如用户名、密码）与在AAA服务器上配置的凭据来验证用户身份的过程。如果凭据匹配，用户通过认证并获得网络访问权限。如果凭据不匹配，认证失败，网络访问被拒绝。</p>
+<p>认证也可以在用户凭据输入错误时失败。例如，安全策略可能要求用户从本地位置使用明文密码进行认证。然而，如果同样的密码从远程位置输入，访问可能会被拒绝。</p>
+<p>ISP也可以选择仅为已认证的用户提供网络访问，前提是他们的账户没有被暂停。管理员可以选择允许某些用户访问特定资源，直到账户恢复正常。</p>
+<hr />
+<h3 id="212">2.1.2 授权</h3>
+<p>授权是指确定授予用户何种权限的过程。例如，管理员可以决定是否允许用户访问某些类型的网络，或是否允许用户发出某些命令。</p>
+<p>网络接入服务器（NAS）发送一个“请求” —— 包含有关用户的信息包，RADIUS服务器根据该信息授予或拒绝授权。在每种情况下，RADIUS服务器管理授权策略，而NAS则执行策略。</p>
+<p>NAS的“请求”实际上是一组声明。例如，NAS可能会将一个包含以下用户信息的请求发送给RADIUS服务器：</p>
+<ul>
+<li>“用户名是Bob”</li>
+<li>“密码是Hello”</li>
+<li>“IP地址是192.02.34”</li>
+</ul>
+<p>一旦服务器接收到请求，它会利用这些信息来判断用户应具备的属性（例如，“Bob”说他/她的IP地址是192.0.2.34，服务器记录是否与此声明相符）。</p>
+<p>然后，服务器将回复NAS。该回复包含一系列关于用户应具备属性的声明：</p>
+<ul>
+<li>“用户名是Bob”</li>
+<li>“IP地址是192.0.2.78”</li>
+</ul>
+<p>请注意，RADIUS服务器不能请求NAS提供更多信息。与SQL系统不同，RADIUS不能进行复杂查询。在SQL中，像“SELECT name from table where ipaddress = 192.02.34”之类的查询是常见的，而RADIUS不具备这种能力。相反，RADIUS只会声明属性是什么，应该是什么。</p>
+<p>在接收到服务器的回复后，NAS会尝试强制执行这些属性。如果属性无法得到强制执行，NAS会关闭连接。</p>
+<h3 id="_1">认证与授权</h3>
+<p>以下类比说明了认证与授权之间的区别：</p>
+<p>假设你正在开车，突然被警察拦下。警察要求你提供身份证明来确认你的身份。你可以提供护照、驾照或身份证等。例如，在RADIUS协议中，认证过程就是确认你是否被允许访问网络。</p>
+<p>警察可能还会要求你证明你有资格开车。在这种情况下，只有一件事可以证明你有资格——驾照 —— 它证明你被允许（或授权）开车。</p>
+<p>授权过程结合了RADIUS服务器的策略和来自NAS的请求。NAS可能会向请求中添加额外的信息，例如用户的媒体访问控制（MAC）地址。NAS将这些信息发送给服务器，做出是否授权的决定。</p>
+<p>一旦服务器处理了这些信息，它会发送响应给NAS，指示哪些操作是允许或拒绝的。NAS随后会根据服务器发送的策略定义，监控用户的行为，并允许或拒绝用户的活动。</p>
+<h3 id="213-account">2.1.3 计费（account）</h3>
+<p>计费是指记录用户在网络上使用资源的情况。收集的信息可以包括系统使用的时间、发送的数据量或用户在会话期间接收到的数据量。</p>
+<p>在网络会话期间，NAS定期向服务器发送用户活动的计费信息。此计费信息是一个总结，而不是所有流量的完整副本。此数据用于计费目的。</p>
+<p>ISP是计费数据的大型消费者，因为每个用户每分钟的网络访问都会被计费。然而，企业过去并未依赖通过RADIUS收集的网络计费信息，因为员工通常不通过网络访问获取网络信息。随着对持续网络监控需求的增加，也就需要收集和处理这些信息。</p>
+<p>NAS发送的计费摘要通常不包括详细信息，如访问的网站或通过特定协议（SMTP、HTTP、等）传输的数据量。此类详细信息仅对NAS可用，且不会发送给服务器。</p>
+<p>如果需要详细的用户活动信息，网络管理员可以通过其他网络监控工具（如sFlow或NetFlow）获取。然而，这些协议未集成到RADIUS系统中，网络管理员通常会发现很难将这些信息组合起来，以获得更全面的用户活动理解。</p>
+<h3 id="214-auditing">2.1.4 审计（auditing）</h3>
+<p>审计是指主动分析计费日志和其他数据（如sFlow或NetFlow数据）。这种分析是一个长期过程，并且是持续维护和监控的一部分。审计为用户的后认证行为提供信息，并可以帮助确定何时更新访问策略，以匹配用户行为。</p>
+<p>审计还可以用来确定何时NAS遭到破坏，通过监控NAS对授权策略的执行。例如，如果某个用户成功绕过站点策略并访问了特定服务器，而站点策略的意图是拒绝该用户访问，那么审计记录将突出显示这一策略违规。由于站点策略的意图是拒绝该用户访问，所以审计会表明应该更新策略，以防止未来的违规行为。后续的审计将监控长期行为，并确保政策被执行。</p>
+<h3 id="22-radius">2.2 RADIUS系统组件</h3>
+<p>RADIUS是一种网络协议，定义了用于与网络设备进行通信的规则和约定。与许多协议一样，RADIUS采用客户端-服务器模型。一个RADIUS客户端（也称为网络接入服务器（NAS））发送请求到RADIUS服务器，RADIUS服务器处理该请求并发送响应。</p>
+<p>常见的NAS产品包括无线接入点，如Linksys WRT54G和拨号接入设备，这些设备通常由大型网络制造商提供。常见的RADIUS服务器产品也由这些制造商提供。</p>
+<p>包括Cisco ACS、Microsoft IAS、Funk（现为Juniper）Steel Belted RADIUS、Open Systems Radiator和FreeRADIUS。</p>
+<p>虽然RADIUS协议与其他许多协议（如HTTP和SMTP）共享客户端-服务器通信的一般概念，但RADIUS通信的具体实现有所不同。本节将更详细地描述RADIUS系统，包括NAS、服务器和数据库（如MySQL和轻量级目录访问协议（LDAP））的具体角色。</p>
+<p>请参见表2.1，以了解RADIUS组件及其描述。</p>
+<h3 id="radius">RADIUS组件</h3>
+<table>
+<thead>
+<tr>
+<th>组件名称</th>
+<th>功能</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户/设备 （User/Device）</td>
+<td>请求访问网络。</td>
+<td>笔记本电脑、非对称数字用户线路（ADSL）调制解调器、VOIP电话</td>
+</tr>
+<tr>
+<td>网络接入服务器（NAS）</td>
+<td>提供用户/设备的网络访问权限。</td>
+<td>交换机、无线接入点、DSLAM、VPN终端</td>
+</tr>
+<tr>
+<td>认证服务器  (Authentication Server)</td>
+<td>接收来自NAS的认证请求。</td>
+<td>FreeRADIUS、Radiator、IAS、NPS、ACS</td>
+</tr>
+<tr>
+<td>数据存储 (Data Store)</td>
+<td>可选的数据库或目录，存储用户认证和授权信息。RADIUS服务器通过DB API或LDAP与数据存储交互。</td>
+<td>SQL数据库、Kerberos服务服务器、LDAP目录</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="221">2.2.1 网络接入服务器</h3>
+<p>网络接入服务器（NAS）作为用户和更广泛网络之间的网关。
+当用户试图获取网络访问时，NAS传递认证信息（例如，用户名和密码）到RADIUS服务器。
+这个过程被称为认证会话（Authentication Session）。
+用户发起这个认证会话对话，这是一个关键概念。</p>
+<p>在认证会话结束时，服务器指示NAS拒绝用户并拒绝网络访问，或接受用户并提供网络访问。一旦用户访问了网络，网络安全限制（由RADIUS服务器定义）就由NAS执行，NAS充当该用户的网关路由器和防火墙。</p>
+<p>RADIUS服务器接收来自NAS的用户活动总结。这些总结包括诸如会话标识信息、网络上花费的总时间以及从网络和到网络的所有流量数据。请注意，用户流量并不通过RADIUS服务器——RADIUS服务器仅通过NAS总结获取用户的信息。</p>
+<p>有许多不同类型的网络接入服务器（NAS）。在企业环境中，交换机和无线接入点作为NAS来确保只有授权的用户能够访问企业网络。与此相反，运营商可能使用ADSL终端设备或数字用户线接入复用器（DSLAM）作为NAS来验证用户名和密码认证，并生成计费信息。实际上，任何能够验证用户名和密码认证的设备或应用程序都可以是RADIUS客户端。</p>
+<p>RADIUS客户端NAS包括FTP服务器、Web服务器和Unix登录服务。</p>
+<p>使用“NAS”一词来指代网络接入服务器可能会引起混淆，因为NAS在RADIUS协议中充当客户端。本文档使用“NAS”一词来指代客户端，而使用“服务器”一词来指代RADIUS服务器。</p>
+<hr />
+<h3 id="222-radius">2.2.2 RADIUS服务器</h3>
+<p>RADIUS服务器通常是运行在刀片服务器或自包含服务器上的软件应用程序。RADIUS设备也有简化的维护和管理接口。在任何情况下，服务器的功能是相同的：服务器等待来自NAS的请求，处理或转发该请求，然后返回响应给NAS。响应可能包含授权策略或对接收到的计费数据的确认。</p>
+<p>单个RADIUS服务器可以接收和处理来自多种类型NAS（如ADSL、拨号上网或VPN集中器）的多个并发接入请求。一个单一的服务器还可以与文件系统、SQL数据库、LDAP目录或其他RADIUS服务器交互。为了做出对访问请求的决定，RADIUS服务器必须从许多来源获取信息。</p>
+<p>一旦服务器做出决定，它会返回响应给NAS。NAS可能会根据策略执行响应，或者完全忽略它。由于NAS没有办法知道它是否接收到服务器的响应，或者NAS是否按照响应的指示执行，因此NAS通常会记录非常少的信息，关于它接收到什么，或者服务器响应如何处理，因此创建和调试本地站点策略是非常困难的。</p>
+<blockquote>
+<p>RADIUS服务器无法控制NAS对响应的处理方式。</p>
+</blockquote>
+<p>考虑以下类比来帮助说明这一点：人力资源（HR）部门像RADIUS服务器，通过设置策略，而安保人员像网络中的NAS，执行这些HR部门的政策。</p>
+<p>在这个例子中，公司政策是，当员工被解雇时，HR会通知安保并移除该员工的建筑物访问权限。安保人员负责确保该员工不再进入公司大楼。如果有一天员工被解雇（类似于用户被拒绝访问），HR部门会通知安保人员该员工不再拥有访问权限。</p>
+<p>在网络中，NAS执行系统访问时，RADIUS服务器几乎不会做任何事情，除了向NAS提供一些建议。用户可以自由进出（类似于RADIUS服务器对NAS发送的决定），然后由安全人员执行任务，拒绝进入已被解雇的员工（类似于RADIUS在网络中执行系统访问）。在网络中，NAS负责强制系统访问。RADIUS服务器只做了向NAS提供建议的工作。</p>
+<h3 id="radius_1">RADIUS服务器策略</h3>
+<p>RADIUS服务器根据以下标准处理NAS请求：</p>
+<ul>
+<li>NAS请求的内容</li>
+<li>RADIUS服务器本地可用的信息（如平面文件、SQL、LDAP）</li>
+</ul>
+<p>由于处理标准的限制，服务器不能与NAS协商获取更多信息：服务器仅处理NAS发送的内容，并返回一个确认或不确认的响应。这一限制是另一个关键概念。</p>
+<blockquote>
+<p>RADIUS服务器无法控制NAS发送的请求的内容。</p>
+</blockquote>
+<p>因此，一旦RADIUS服务器接收到来自NAS的请求，它必须使用本地信息——网络管理员在服务器中创建并配置的策略——来决定如何响应NAS请求。这些策略可以很简单，如“接受任何提供正确用户名和密码的用户”。或者，它们可以非常复杂，如“允许基本用户请求高级服务，除非是周日或节假日，只要他们的账户状态是最新的”。</p>
+<p>在所有情况下，策略必须由网络管理员设计、实施并部署。可能会有很大的差异，因为策略是基于NAS请求的内容而定义的。RADIUS文档并未总是描述NAS请求的内容，因此，通常，网络管理员唯一确定NAS请求内容的方式是设置一个测试网络。测试登录将导致接收到请求。管理员然后可以检查这些请求，找出特定属性的内容：一旦策略被创建，服务器就会使用这些信息做出决定。</p>
+<p>当不同的NAS元素以不同格式发送相同的信息时，这个过程变得更为复杂。例如，RADIUS没有MAC地址数据类型，这意味着MAC地址以ASCII字符串发送。有些NAS元素发送MAC地址格式为“00:01:02:03:04:05”，而其他则使用“00-01-02-03-04-05”格式。由于这些差异未被文档化，所以创建策略非常困难。在大多数情况下，管理员需要通过试验和错误的方式来确定如何实施策略。</p>
+<h3 id="223">2.2.3 数据存储</h3>
+<p>数据存储（例如数据库或目录）允许数据的存储和检索。它们具有有限的决策功能。虽然在大多数数据库中可以使用标准程序，但通常仅在需要简单数据存储时使用。</p>
+<p>RADIUS服务器和数据存储之间的主要区别在于它们支持政策和认证的方式。数据存储在认证过程中扮演角色，负责为RADIUS服务器提供访问用户数据的功能。</p>
+<p>当RADIUS服务器认证用户时，它从数据库或目录读取或写入该用户的数据。用户信息（如用户名、密码、信用额度和会话数据（即会话时间和用户流量统计数据））存储在该数据库或目录中。</p>
+<p>在许多方面，RADIUS协议类似于远程数据库查询语言。特别地，虽然SQL或LDAP数据库存储用户数据，但该数据库不能由NAS直接查询。</p>
+<p>NAS向服务器发送请求，服务器再查询数据库。
+这种简化的数据库查询语言意味着可以轻松地为NAS添加认证和计费功能，而不是实现一个完整功能的SQL客户端，这将非常占用资源且成本高昂。</p>
+<h3 id="radius_2">RADIUS服务器与数据存储的主要区别</h3>
+<table>
+<thead>
+<tr>
+<th><strong>RADIUS服务器</strong></th>
+<th><strong>数据存储</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>执行策略</td>
+<td>很少执行策略</td>
+</tr>
+<tr>
+<td>支持完整的认证协议集，如：</td>
+<td>仅允许简单的认证查询，如：</td>
+</tr>
+<tr>
+<td>- CHAP</td>
+<td>- LDAP “bind as user”</td>
+</tr>
+<tr>
+<td>- MS-CHAP</td>
+<td></td>
+</tr>
+<tr>
+<td>- MS-CHAPv2</td>
+<td></td>
+</tr>
+<tr>
+<td>- 802.1X（EAP, EAP-TLS, PEAP, EAP-TTLS, EAP-MD5, EAP-GTC, LEAP）</td>
+<td></td>
+</tr>
+<tr>
+<td>- HTTP Digest认证</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>数据存储存储数据，但不进行用户认证。</p>
+</blockquote>
+<hr />
+<h3 id="224-radius">2.2.4 RADIUS系统组件总结</h3>
+<p>总结：</p>
+<ul>
+<li>NAS负责请求并执行网络访问，过滤流量，以及发送计费数据的摘要。</li>
+<li>RADIUS服务器负责接收访问请求，解释复杂的策略，并返回响应给NAS。</li>
+<li>数据存储（如目录或数据库）负责存储大量数据，通常按用户名进行索引。这些数据可能包括用户密码、信用额度、会话数据等。</li>
+</ul>
+<hr />
+<h3 id="23-radius">2.3 RADIUS会话过程</h3>
+<p>一个RADIUS会话包括以下步骤：</p>
+<ol>
+<li>
+<p>远程用户连接到RADIUS客户端设备（使用点对点协议（PPP）、802.1X或其他数据链路协议）并启动登录：</p>
+<ul>
+<li>NAS在RADIUS中发起所有对话（认证会话）。</li>
+<li>所有信息的发送完全由客户端决定。</li>
+<li>RADIUS服务器不控制NAS的行为。</li>
+</ul>
+</li>
+<li>
+<p>网络接入服务器通过共享密钥机制与RADIUS服务器通信：</p>
+<ul>
+<li>RADIUS使用用户数据报协议（UDP）端口1812进行认证，端口1813进行计费。</li>
+</ul>
+</li>
+<li>
+<p>NAS向服务器发送RADIUS消息（称为Access-Request）：</p>
+<ul>
+<li>
+<p>该消息包含关于用户的信息，包括用户名、认证凭据和请求的服务。</p>
+</li>
+<li>
+<p>此外，消息可能还包含关于NAS的信息，如主机名、MAC地址或无线SSID。</p>
+</li>
+<li>
+<p>消息使用密码认证协议（PAP）、挑战握手认证协议（CHAP）或扩展认证协议（EAP）。</p>
+</li>
+<li>
+<p>服务器需要决定是否仅根据NAS请求中的信息对用户进行认证或授权，因为它无法访问任何额外的用户信息。</p>
+</li>
+<li>
+<p>如果NAS发送的包使用了服务器不支持的认证协议，服务器将拒绝该请求。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>RADIUS服务器处理请求并验证登录请求，验证是基于网络上运行的本地数据库或认证服务的。</p>
+<ul>
+<li>认证服务可以包括：LDAP服务器进行域验证；Windows网络中的Active Directory服务器；Kerberos服务；SQL服务器或其他数据库类型获取数据库信息。</li>
+</ul>
+</li>
+<li>
+<p>RADIUS服务器将验证结果以以下形式之一返回给NAS：Access Reject、Access Challenge或Access Accept。</p>
+<ul>
+<li>
+<p><strong>Access Reject</strong> 如果用户无效或未授权，将锁定用户的网络访问，拒绝他们对请求资源的访问。</p>
+</li>
+<li>
+<p><strong>Access Challenge</strong> 当服务器需要更多的信息时发生。由于RADIUS数据包大小有限，Access Challenges允许交换更多的数据。</p>
+</li>
+<li>
+<p><strong>Access Accept</strong> 允许用户访问资源并提供策略信息，告知NAS用来提供服务的策略，并强制执行用户行为。Access Accept条件不适用于所有资源。每个访问的资源都会根据需要进行检查。RADIUS客户端还会验证原始访问，并根据需要定期提供。</p>
+</li>
+<li>
+<p><strong>Access Accept</strong> 响应导致NAS为远程客户端提供以下服务：提供静态或动态IP地址；为会话分配生存时间（TTL）；下载并应用用户的访问控制列表（ACL）；设置L2TP、VLAN和QoS会话参数。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>一旦会话在RADIUS客户端上建立，计费过程就会启动：</p>
+<ul>
+<li>
+<p><strong>Accounting-Request (start)</strong> 消息由NAS发送给服务器，表示会话开始。此时，会创建会话账单记录。</p>
+</li>
+<li>
+<p><strong>Accounting-Request (stop)</strong> 消息表示会话结束；会话账单记录已关闭。</p>
+</li>
+<li>
+<p>在计费会话期间，存储在数据库中的数据用于生成可计费的信息和报告。</p>
+</li>
+<li>
+<p>存储在数据库中的计费信息包括以下内容：会话时间、传输的数据包数量、传输的数据量、用户和机器的身份信息、网络地址以及接入点信息。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="24-radius">2.4 RADIUS会话消息</h3>
+<p>RADIUS会话消息由单个用户数据报协议（UDP）包组成，包含简短的头部，后跟认证、授权或计费数据。</p>
+<h4 id="241">2.4.1 消息属性</h4>
+<p>每个消息包含一组属性值对（AVP），通常称为<strong>属性</strong>。这些<strong>属性</strong>携带来自NAS到服务器或虚拟代理服务器，再从服务器到NAS的认证、授权或计费信息。常见的属性包括用户名、密码、IP地址和NAS地址等；每个属性只包含其中的一个项目。一个属性还可以包含子属性，用于分组目的。</p>
+<blockquote>
+<p>有关标准属性的完整列表，请参阅FreeRADIUS RFC属性页面：<a href="http://freeradius.org/rfc/attributes.html">http://freeradius.org/rfc/attributes.html</a></p>
+</blockquote>
+<p>每个客户端和服务器支持有限的属性集。在某些情况下，可能不支持某些属性，因为相关的客户端或NAS软件可能是在标准发布之前编写的，或者该软件根本不支持该特定功能。了解哪些属性受支持的最佳方法是查看软件供应商的文档。如果文档没有提到相关属性，说明这些属性可能不受支持。请联系供应商以获取更多信息。</p>
+<p>除了标准化属性外，供应商还可以通过供应商特定属性（VSA）扩展RADIUS协议。使用VSA意味着供应商可以快速添加功能，而无需耗时的标准化过程。</p>
+<p>为了在RADIUS客户端协议中有效使用，VSA必须在RADIUS服务器上定义。由于VSA是非标准属性，难以通过协议定义获取任何信息。因此，VSA通常仅与供应商特定的产品兼容（只适用于该供应商的产品）。因此，定义VSA时必须考虑到RADIUS服务器可能使用的特定供应商。</p>
+<h3 id="242">2.4.2 属性类型</h3>
+<p>基本的RADIUS属性类型在RFC 2865中定义（<a href="http://tools.ietf.org/html/rfc2865">http://tools.ietf.org/html/rfc2865</a>）。自原始实现和标准化以来，还定义了附加的属性类型。表2.3.2列出了属性类型及其格式。</p>
+<table>
+<thead>
+<tr>
+<th><strong>类型</strong></th>
+<th><strong>格式</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>integer</td>
+<td>无符号32位整数</td>
+<td></td>
+</tr>
+<tr>
+<td>ipaddr</td>
+<td>IPv4地址</td>
+<td></td>
+</tr>
+<tr>
+<td>date</td>
+<td>Unix时间戳（自1970年1月1日以来的秒数）</td>
+<td></td>
+</tr>
+<tr>
+<td>string</td>
+<td>可变长度字符串字段</td>
+<td>用于FreeRADIUS用于打印文本字符串。</td>
+</tr>
+<tr>
+<td>octet</td>
+<td>可变长度字符串字段</td>
+<td>用于FreeRADIUS用于二进制数据。</td>
+</tr>
+<tr>
+<td>ifid</td>
+<td>IPv6接口ID</td>
+<td></td>
+</tr>
+<tr>
+<td>ipv6addr</td>
+<td>IPv6地址</td>
+<td></td>
+</tr>
+<tr>
+<td>ipv6prefix</td>
+<td>IPv6前缀</td>
+<td></td>
+</tr>
+<tr>
+<td>byte</td>
+<td>单字节整数</td>
+<td>在FreeRADIUS v2.0中添加。值介于0-255之间。</td>
+</tr>
+<tr>
+<td>short</td>
+<td>两字节整数</td>
+<td>在FreeRADIUS v2.0中添加。值介于0-65535之间。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>在FreeRADIUS v3.0中添加。8字节整数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表2.3.2 RADIUS属性类型</strong></p>
+<h3 id="243">2.4.3 属性定义字典</h3>
+<p>FreeRADIUS包含超过100个字典，存储了近5000个属性定义。</p>
+<p>与基于文本的协议（如SMTP或HTTP）不同，RADIUS是二进制协议；因此，尽管协议中常通过名称引用属性（例如，“User-Name”），这些名称在协议中没有任何意义。数据（即，“User-Name”）在消息中以二进制格式与二进制数据一起进行编码，而不是以文本字符串表示。</p>
+<p>字典文件用于映射人类使用的名称与RADIUS数据包中的二进制数据。</p>
+<p>NAS发送的数据包包含具有编号、长度和二进制数据的属性。相比之下，字典文件由一系列具有名称、编号和数据类型的条目组成。</p>
+<p>服务器使用字典来解释二进制数据，如下所示：服务器搜索字典以匹配数据包中的编号，字典条目中的相应数据项是该编号对应的数据。</p>
+<p>此过程也可以反向工作：服务器使用字典来对字符串（例如，“User-Name = Bob”）进行编码，作为“数字、长度、二进制数据”的形式。</p>
+<p>例如，服务器可能收到一个数据包，其中包含数字1和一些二进制数据。服务器无法解码这些属性，除非知道二进制数据的形式是字符串、IP地址或整数。相应的字典条目可能会指出：数字'1'被称为“User-Name”，它是'字符串'形式中的一部分。这些信息（即，形式为'字符串'）包含在字典条目中，允许服务器成功解码数据包。</p>
+<p>通过使用字典添加新属性到RADIUS软件中更加简单，因为它允许管理员在不升级软件的情况下创建新的映射。</p>
+<p>供应商可以在字典中定义新的属性，而无需更改服务器或客户端源代码。这些新属性可以被纳入网络访问控制决策或登录的计费记录中。供应商还可以通过发布新的字典文件来为其设备定义新的功能。为NAS添加对该设备的支持只需编写正确的字典文件。</p>
+<p>请注意，NAS与字典文件之间没有直接的连接，因为字典文件只存在于服务器中。例如，如果在本地字典文件中编辑了名称，对任何其他NAS或RADIUS服务器没有影响，因为这些名称只出现在本地字典文件中。RADIUS数据包仍然保持二进制格式，仅包含数字，而没有名称。</p>
+<blockquote>
+<p>编辑本地字典文件中的属性名称不会影响任何其他NAS或RADIUS服务器。<br />
+只有属性编号会被编码并在RADIUS数据包中发送。</p>
+<p>请注意，NAS和服务器可能使用不同的字典文件，这可能会导致问题，如果它们没有协调（例如，数据集可能会被NAS和服务器以不同方式解释，举例来说，作为字符串的NAS和服务器的IP地址）。</p>
+</blockquote>
+<p>由于属性名称不在RADIUS数据包中发送，因此字典仅限于服务器实现的本地服务器和该服务器实施的策略。</p>
+<p>在这方面，NAS的实现比服务器的实现要简单得多。每个NAS都在RADIUS数据包中“查看”它所“理解”的内容，并忽略其他内容。相比之下，每个RADIUS服务器会呈现来自RADIUS部署中每个NAS的所有信息。每个RADIUS服务器都必须能够“理解”每个属性的功能和配置能力，以便进行用户认证或授权。</p>
+<h3 id="244">2.4.4 字典文件格式</h3>
+<p>使用正确的字典非常重要。如果使用了错误的字典，服务器可能无法正确解释配置或生成正确的响应给NAS。RADIUS字典文件的格式尚未标准化，尽管大多数情况下是1992年原始Livingston格式的简单变体。由于格式的差异，服务器的字典文件可能与相同RADIUS服务器软件的其他字典文件不兼容；一个服务器的字典文件也可能与另一个服务器的字典文件不兼容。</p>
+<p>如果服务器没有正确的供应商特定属性和字典，它将无法正确处理任何接收到的该供应商的VSA。</p>
+<p>有些服务器可能不包含所有必要的字典文件，因为每个供应商定义了自己的字典，并选择何时通知供应商进行更改。因此，如果服务器没有包含特定供应商的字典，则需要联系该供应商，而不是联系提供RADIUS服务器的组织。</p>
+<h3 id="245">2.4.5 服务器端属性</h3>
+<p>服务器端属性是控制服务器行为的属性。通常需要定义这些服务器端属性，同时确保与服务器端属性相关的信息不会在RADIUS消息中传递。服务器端属性不应包含在RADIUS消息中，因为这些属性是服务器实现的内部内容。</p>
+<p>服务器端属性的定义可能因服务器供应商而异，甚至同一版本的服务器之间也可能有所不同。仅FreeRADIUS定义的服务器端属性在文档中有详细说明。这些定义通常在服务器的所有版本中相同，但其他供应商可能会有不同的实现。</p>
+<p>例如，像“使用LDAP服务器X”或“记住用户属于组Y”的信息应当用于创建本地策略。这些信息应存储在服务器端属性中（也称为“非协议属性”）。</p>
+<p>服务器端属性使用与标准或供应商RADIUS属性相同的格式呈现。这种格式使管理员能够更好地控制服务器行为的内部方面，就像服务器外部响应一样。服务器端属性信息可以作为一个政策的一部分进行检索，并作为后续策略的一部分进行检查。例如，策略可以说“为此请求使用LDAP服务器X”，并且“使用属性X，值Y”响应。</p>
+<h3 id="246">2.4.6 处理请求</h3>
+<p>服务器通过本地站点策略处理请求。该策略用于检查请求、请求属性和属性值。服务器根据本地策略构建响应消息（由本地策略决定），例如，时间限制、组访问限制和IP地址分配等。处理阶段可能包括跟踪服务器端属性，如第2.4.5节《服务器端属性》中所描述。</p>
+<p>FreeRADIUS为每个请求维护三个属性列表。它们是：</p>
+<ul>
+<li><strong>Request列表</strong>：请求包中的属性</li>
+<li><strong>Reply列表</strong>：响应包中的属性</li>
+<li><strong>Config列表</strong>：控制服务器内部行为的属性</li>
+</ul>
+<p>并不是所有的服务器实现都完全按照这种方式操作，但通常具有类似的功能。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>

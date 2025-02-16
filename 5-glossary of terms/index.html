@@ -1,0 +1,461 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../4-configuration-requirements/">
+      
+      
+        <link rel="next" href="../6-Frequently%20Asked%20Questions/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>术语表 - FreeRADIUS Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="FreeRADIUS Documentation" class="md-header__button md-logo" aria-label="FreeRADIUS Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FreeRADIUS Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              术语表
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="FreeRADIUS Documentation" class="md-nav__button md-logo" aria-label="FreeRADIUS Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    FreeRADIUS Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-freeradius-introduce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    简介
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-freeradius-how%20to%20work/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    工作原理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-installation-requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安装要求
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-configuration-requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    配置指南
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    术语表
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-Frequently%20Asked%20Questions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>术语表</h1>
+
+<p>术语表</p>
+<p><strong>AAA</strong> - 认证、授权和计费 - 一种分布式系统的安全架构，提供对用户访问服务和资源的控制，并跟踪用户活动。</p>
+<p><strong>ACL</strong> - 访问控制列表 - 附加到对象的权限列表。它指定哪些用户或系统进程被授予对对象的访问权限，以及允许在给定对象上执行的操作。</p>
+<p><strong>ADSL</strong> - 非对称数字用户线。</p>
+<p><strong>AVP</strong> - 属性值对。</p>
+<p><strong>CHAP</strong> - 挑战握手认证协议 - 一种认证网络用户的协议。</p>
+<p><strong>EAP</strong> - 可扩展认证协议 - 一种认证框架。变体如 EAP-TTLS 和 EAP-TLS 添加了传输层安全协议。</p>
+<p><strong>FreeRADIUS</strong> - 一种模块化、高性能、开源的 RADIUS 变体。</p>
+<p><strong>FTP</strong> - 文件传输协议 - 一种用于在两个主机之间传输文件的标准网络协议，通常用于通过传输控制协议（TCP）网络传输文件，如互联网。</p>
+<p><strong>HTTP</strong> - 超文本传输协议 - 用于分布式、协作、超媒体信息系统的应用协议。</p>
+<p><strong>IANA</strong> - 互联网分配号码管理局 - 负责全球 IP 地址分配、自治系统网络分配、根域名管理以及媒体类型和其他与互联网协议相关的符号和数字。</p>
+<p><strong>IETF</strong> - 互联网工程任务组 - 一个国际性的网络设计师、运营商、供应商和研究人员社区，致力于互联网架构的发展和互联网的平稳运行。</p>
+<p><strong>ISP</strong> - 网络服务提供商 - 也称为互联网接入服务商 - 提供互联网及相关服务的商业或组织。</p>
+<p><strong>L2TP</strong> - 层二隧道协议 - 用于支持 VPN 或作为 ISP 提供服务的一种隧道协议。</p>
+<p><strong>LAN</strong> - 局域网 - 一种局限于特定建筑物、学校或计算机实验室的计算机网络。</p>
+<p><strong>LDAP</strong> - 轻量级目录访问协议 - 一种用于访问和维护通过互联网协议（IP）网络提供的分布式目录信息服务的应用协议。</p>
+<p><strong>MAC 地址</strong> - 媒体访问控制地址 - 在物理网络段上分配给网络接口的唯一标识符。</p>
+<p><strong>NAC</strong> - 网络访问控制 - 一组用于定义和实施一种策略的协议，该策略描述了如何通过设备首次访问网络时对网络节点提供安全访问。</p>
+<p><strong>NAS</strong> - 网络接入服务器 - 访问远程资源的单一接入点，任何执行用户名和密码身份验证的设备或应用程序。</p>
+<p><strong>PAP</strong> - 密码认证协议 - 一种使用未加密 ASCII 密码的认证协议。</p>
+<p><strong>PEAP</strong> - 受保护的可扩展认证协议 - 一种将 EAP 封装在加密并经过身份验证的 TLS 隧道中的协议。</p>
+<p><strong>POP</strong> - 接入点 - 访问互联网的接入点。它是一个物理位置，包含服务器、ATM 开关和数字/模拟呼叫聚合器。</p>
+<p><strong>PPP</strong> - 点对点协议 - 一种数据链路协议，用于在两个网络节点之间进行直接通信。</p>
+<p><strong>QoS</strong> - 服务质量 - 网络能力达到最大带宽并处理网络性能元素，如延迟、错误率和正常运行时间。</p>
+<p><strong>RADIUS</strong> - 远程认证拨号用户服务 - 一种用于远程用户身份验证和计费的网络协议。</p>
+<p><strong>RFC</strong> - 互联网工程任务组（IETF）关于互联网标准和协议的备忘录。</p>
+<p><strong>SLIP</strong> - 串行线路互联网协议 - 一种将互联网协议封装，用于串行端口和调制解调器连接。</p>
+<p><strong>SNMP</strong> - 简单网络管理协议 - 一种用于管理 IP 网络设备的互联网标准协议。此类设备包括路由器、交换机、服务器、工作站和打印机。</p>
+<p><strong>SSID</strong> - 服务集标识符 - 一种人类可读的文本字符串，用于标识扩展的服务集。</p>
+<p><strong>SSL</strong> - 安全套接字层 - 一种通过互联网提供通信安全的非对称加密协议。它是 TLS 协议的前身。</p>
+<p><strong>SQL</strong> - 结构化查询语言 - 一种专门的编程语言，用于管理关系数据库管理系统中的数据。开源版本包括 MySQL 和 PostgreSQL。</p>
+<p><strong>TLS</strong> - 传输层安全 - 一种通过互联网提供通信安全的非对称加密协议。它是 SSL 协议的继任者。</p>
+<p><strong>TTLS</strong> - 隧道传输层安全 - 对 TLS 的扩展，使用已建立的安全连接或隧道来验证客户端。隧道的增加提供了对窃听和中间人攻击的保护。它用于 EAP-TTLS。</p>
+<p><strong>UDP</strong> - 用户数据报协议 - 一种网络通信协议。</p>
+<p><strong>VLAN</strong> - 虚拟局域网 - 一种逻辑上将工作站、服务器和网络设备分组到同一 LAN 的网络架构，适用于地理分布的网络设备。</p>
+<p><strong>VPN</strong> - 虚拟私人网络 - 存在于互联网中的私有网络。</p>
+<p><strong>VSA</strong> - 特定供应商属性 - 由远程接入服务器供应商定义的属性，通常由硬件供应商定制，以调整 RADIUS 在其服务器上的工作方式。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>
