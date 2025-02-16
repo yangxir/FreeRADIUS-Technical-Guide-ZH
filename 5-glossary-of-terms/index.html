@@ -9,8 +9,10 @@
       
       
       
-        <link rel="prev" href="../5-glossary%20of%20terms/">
+        <link rel="prev" href="../4-configuration-requirements/">
       
+      
+        <link rel="next" href="../6-Frequently-Asked-Questions/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -18,7 +20,7 @@
     
     
       
-        <title>FAQ - FreeRADIUS Documentation</title>
+        <title>术语表 - FreeRADIUS Documentation</title>
       
     
     
@@ -91,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FAQ
+              术语表
             
           </span>
         </div>
@@ -226,7 +228,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../2-freeradius-how%20to%20work/" class="md-nav__link">
+      <a href="../2-freeradius-how-to-work/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -286,27 +288,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../5-glossary%20of%20terms/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    术语表
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -321,13 +302,34 @@
         
   
   <span class="md-ellipsis">
-    FAQ
+    术语表
     
   </span>
   
 
       </a>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-Frequently-Asked-Questions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -364,72 +366,45 @@
 
 
 
-  <h1>FAQ</h1>
+  <h1>术语表</h1>
 
-<p><strong>常见问题解答</strong></p>
-<p><strong>我应该使用哪个操作系统？</strong></p>
-<p>FreeRADIUS 协议可以在所有 Unix 系统上运行，建议选择熟悉的操作系统。Windows 目前不支持 FreeRADIUS。</p>
-<p><strong>服务器的 CPU/RAM/磁盘空间要求是多少？</strong></p>
-<p>FreeRADIUS 服务器的要求很低。一个基本的 FreeRADIUS 安装使用 8MB 的 RAM、不到 100MB 的磁盘空间以及最低的 CPU 能力。一个互联网服务提供商（ISP）如果有 10,000 或更少的用户，使用当时市场上任何商品化的系统都不会遇到问题。如果 ISP 有超过 10,000 个用户，则总体系统设计变得比单台服务器的规格更加重要。</p>
-<p><strong>服务器没有启动。我该怎么办？</strong></p>
-<p>执行以下操作：</p>
-<ul>
-<li>
-<p>使用 sudo 切换到 root 用户上下文。
-  如果服务器启动正常，则问题是服务器正在以非特权用户身份运行。</p>
-</li>
-<li>
-<p>以该用户身份登录，并以调试模式运行。任何错误或警告将显示在监控器上。</p>
-</li>
-</ul>
-<p><strong>服务器发送了一个 Access-Reject 消息，而用户应该被接受。为什么？</strong></p>
-<p>执行以下操作，收集足够的信息来诊断问题：</p>
-<ul>
-<li>
-<p>以调试模式运行服务器，并观察用户登录时发生了什么。</p>
-</li>
-<li>
-<p>如果控制套接字已配置，您还可以运行 <code>raddebug -u USERNAME</code> 来收集来自运行中服务器的相同信息。</p>
-</li>
-</ul>
-<p><strong>服务器发送了 Access-Accept 和一些属性，但用户没有获得正确的服务（或被拒绝）。为什么？</strong></p>
-<p>检查 NAS 日志，以确定 NAS 为什么忽略服务器的指示。NAS 文档应该标明它需要提供某些服务所需的属性。这些属性有时会以不寻常的格式出现，因此要查阅 NAS 文档。</p>
-<p><strong>会计日志没有包含我想要查看的信息。我如何让服务器记录正确的信息？</strong></p>
-<p>配置 NAS 以发送正确的信息。FreeRADIUS 服务器只能记录它接收到的信息。如果信息不在会计数据包中，那么它就没有被 NAS 发送。
-<strong>如何在认证后限制用户的网络访问？</strong></p>
-<p>配置 FreeRADIUS 发送适当的过滤规则到 NAS。NAS 执行这些认证后规则。请查阅 NAS 文档，了解属性的名称和格式。确保这些属性没有接受的标准，并确保咨询 NAS 文档。</p>
-<p><strong>如何为用户配置强制门户？</strong></p>
-<p>请查阅 NAS 文档，了解如何配置强制门户。每个 NAS 需要不同的操作。</p>
-<p>另一个选项是使用开源强制门户解决方案。FreeRADIUS 仅提供对认证请求的“是”或“否”响应。FreeRADIUS 不充当防火墙来阻止网络访问，并且不支持 HTTP。</p>
-<p><strong>如何在用户登录后断开用户连接？</strong></p>
-<p>查看 NAS 文档。如果特定的 NAS 支持 Disconnect-Request，可以使用 <code>radclient</code> 发送该数据包。</p>
-<p>如果 NAS 不支持 Disconnect-Request，请使用该特定 NAS 的适当操作。例如，一些 NAS 支持 SNMP 写入，而其他 NAS 需要管理员登录到 NAS 控制台并手动重置端口。</p>
-<p><strong>服务器日志中有许多关于请求超时或阻塞子进程的消息。我该如何修复？</strong></p>
-<p>这些阻塞通常发生在服务器使用数据库进行认证时，而数据库处于非活动状态或运行缓慢。为解决此问题，增加数据库的响应速度。粗略的经验法则是，如果查询时间超过一秒，则数据库可能存在严重问题。可能的解决方案包括：</p>
-<ul>
-<li>添加索引</li>
-<li>增加更多 RAM</li>
-<li>确保其他系统在 FreeRADIUS 使用数据库时不会同时访问数据库</li>
-</ul>
-<p><strong>服务器每秒能处理多少次认证？</strong></p>
-<p>这在很大程度上取决于主机系统的 CPU 性能、数据库类型以及认证协议。通常，一个新服务器上所有用户的内存和 PAP 认证应该能够每秒进行数万个认证。</p>
-<p>使用 PEAP 时，系统的 CPU 可能会成为瓶颈，每秒只能处理数千次认证。</p>
-<p><strong>服务器每秒能处理多少个会计数据包？</strong></p>
-<p>主机系统的 CPU 性能和数据库决定了服务器每秒能处理多少个会计数据包。如果数据库的写入速度有限，FreeRADIUS 的会计请求也仅限于数据库的写入速度。
-<strong>如何最大化我的系统性能？</strong></p>
-<p>确保您的系统使用高性能数据库。这一措施将对您的系统性能产生最大影响。</p>
-<p><strong>服务器给出了 WARNING / ERROR 消息。我该怎么办？</strong></p>
-<p>阅读警告或错误消息并按照提示操作。如果问题仍然存在，请在 FreeRADIUS 用户邮件列表上寻求帮助，网址是：freeradius-users@lists.freeradius.org。</p>
-<p><strong>服务器提示共享密钥不正确，但我确定它已经正确输入。如何解决？</strong></p>
-<p>为解决此问题，请执行以下步骤：</p>
-<ol>
-<li>重新输入 NAS 和 RADIUS 服务器上的共享密钥。</li>
-<li>以调试模式运行服务器，确保它使用的是正确的共享密钥。</li>
-</ol>
-<p>在某些情况下，该消息可能表示 NAS 网络硬件故障。如果是这种情况，请更换 NAS。</p>
-<p><strong>如何在需要时获取技术支持？</strong></p>
-<p>Network RADIUS SARL 自豪地提供最高质量的 FreeRADIUS 支持。Network RADIUS SARL 启动并维护 FreeRADIUS 协议，并编写大部分新的 RADIUS 规范。</p>
-<p>有关 Network RADIUS SARL 支持包的更多信息，请访问：http://networkradius.com/support。下表简要描述了选项。</p>
+<p>术语表</p>
+<p><strong>AAA</strong> - 认证、授权和计费 - 一种分布式系统的安全架构，提供对用户访问服务和资源的控制，并跟踪用户活动。</p>
+<p><strong>ACL</strong> - 访问控制列表 - 附加到对象的权限列表。它指定哪些用户或系统进程被授予对对象的访问权限，以及允许在给定对象上执行的操作。</p>
+<p><strong>ADSL</strong> - 非对称数字用户线。</p>
+<p><strong>AVP</strong> - 属性值对。</p>
+<p><strong>CHAP</strong> - 挑战握手认证协议 - 一种认证网络用户的协议。</p>
+<p><strong>EAP</strong> - 可扩展认证协议 - 一种认证框架。变体如 EAP-TTLS 和 EAP-TLS 添加了传输层安全协议。</p>
+<p><strong>FreeRADIUS</strong> - 一种模块化、高性能、开源的 RADIUS 变体。</p>
+<p><strong>FTP</strong> - 文件传输协议 - 一种用于在两个主机之间传输文件的标准网络协议，通常用于通过传输控制协议（TCP）网络传输文件，如互联网。</p>
+<p><strong>HTTP</strong> - 超文本传输协议 - 用于分布式、协作、超媒体信息系统的应用协议。</p>
+<p><strong>IANA</strong> - 互联网分配号码管理局 - 负责全球 IP 地址分配、自治系统网络分配、根域名管理以及媒体类型和其他与互联网协议相关的符号和数字。</p>
+<p><strong>IETF</strong> - 互联网工程任务组 - 一个国际性的网络设计师、运营商、供应商和研究人员社区，致力于互联网架构的发展和互联网的平稳运行。</p>
+<p><strong>ISP</strong> - 网络服务提供商 - 也称为互联网接入服务商 - 提供互联网及相关服务的商业或组织。</p>
+<p><strong>L2TP</strong> - 层二隧道协议 - 用于支持 VPN 或作为 ISP 提供服务的一种隧道协议。</p>
+<p><strong>LAN</strong> - 局域网 - 一种局限于特定建筑物、学校或计算机实验室的计算机网络。</p>
+<p><strong>LDAP</strong> - 轻量级目录访问协议 - 一种用于访问和维护通过互联网协议（IP）网络提供的分布式目录信息服务的应用协议。</p>
+<p><strong>MAC 地址</strong> - 媒体访问控制地址 - 在物理网络段上分配给网络接口的唯一标识符。</p>
+<p><strong>NAC</strong> - 网络访问控制 - 一组用于定义和实施一种策略的协议，该策略描述了如何通过设备首次访问网络时对网络节点提供安全访问。</p>
+<p><strong>NAS</strong> - 网络接入服务器 - 访问远程资源的单一接入点，任何执行用户名和密码身份验证的设备或应用程序。</p>
+<p><strong>PAP</strong> - 密码认证协议 - 一种使用未加密 ASCII 密码的认证协议。</p>
+<p><strong>PEAP</strong> - 受保护的可扩展认证协议 - 一种将 EAP 封装在加密并经过身份验证的 TLS 隧道中的协议。</p>
+<p><strong>POP</strong> - 接入点 - 访问互联网的接入点。它是一个物理位置，包含服务器、ATM 开关和数字/模拟呼叫聚合器。</p>
+<p><strong>PPP</strong> - 点对点协议 - 一种数据链路协议，用于在两个网络节点之间进行直接通信。</p>
+<p><strong>QoS</strong> - 服务质量 - 网络能力达到最大带宽并处理网络性能元素，如延迟、错误率和正常运行时间。</p>
+<p><strong>RADIUS</strong> - 远程认证拨号用户服务 - 一种用于远程用户身份验证和计费的网络协议。</p>
+<p><strong>RFC</strong> - 互联网工程任务组（IETF）关于互联网标准和协议的备忘录。</p>
+<p><strong>SLIP</strong> - 串行线路互联网协议 - 一种将互联网协议封装，用于串行端口和调制解调器连接。</p>
+<p><strong>SNMP</strong> - 简单网络管理协议 - 一种用于管理 IP 网络设备的互联网标准协议。此类设备包括路由器、交换机、服务器、工作站和打印机。</p>
+<p><strong>SSID</strong> - 服务集标识符 - 一种人类可读的文本字符串，用于标识扩展的服务集。</p>
+<p><strong>SSL</strong> - 安全套接字层 - 一种通过互联网提供通信安全的非对称加密协议。它是 TLS 协议的前身。</p>
+<p><strong>SQL</strong> - 结构化查询语言 - 一种专门的编程语言，用于管理关系数据库管理系统中的数据。开源版本包括 MySQL 和 PostgreSQL。</p>
+<p><strong>TLS</strong> - 传输层安全 - 一种通过互联网提供通信安全的非对称加密协议。它是 SSL 协议的继任者。</p>
+<p><strong>TTLS</strong> - 隧道传输层安全 - 对 TLS 的扩展，使用已建立的安全连接或隧道来验证客户端。隧道的增加提供了对窃听和中间人攻击的保护。它用于 EAP-TTLS。</p>
+<p><strong>UDP</strong> - 用户数据报协议 - 一种网络通信协议。</p>
+<p><strong>VLAN</strong> - 虚拟局域网 - 一种逻辑上将工作站、服务器和网络设备分组到同一 LAN 的网络架构，适用于地理分布的网络设备。</p>
+<p><strong>VPN</strong> - 虚拟私人网络 - 存在于互联网中的私有网络。</p>
+<p><strong>VSA</strong> - 特定供应商属性 - 由远程接入服务器供应商定义的属性，通常由硬件供应商定制，以调整 RADIUS 在其服务器上的工作方式。</p>
 
 
 
